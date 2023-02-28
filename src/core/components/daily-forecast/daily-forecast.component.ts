@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {getDailyForecast} from "../../store-daily-forecast/actions";
 import {Observable} from "rxjs";
+
+import {getDailyForecast} from "../../store-daily-forecast/actions";
 import {AppStateInterface, IDailyForecast} from "../../intefaces";
 import {errorSelector, getDailyForecastSelector, isLoadingSelector} from "../../store-daily-forecast/selectors";
 
@@ -24,5 +25,4 @@ export class DailyForecastComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(getDailyForecast());
   };
-
 }

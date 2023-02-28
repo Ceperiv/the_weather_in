@@ -1,8 +1,12 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-
-import {getCurrentWeather, getCurrentWeatherFailure, getCurrentWeatherSuccess} from "./actions";
 import {catchError, map, mergeMap, of} from "rxjs";
+
+import {
+  getCurrentWeather,
+  getCurrentWeatherFailure,
+  getCurrentWeatherSuccess
+} from "./actions";
 import {CurrentWeatherService} from "../services";
 
 @Injectable()

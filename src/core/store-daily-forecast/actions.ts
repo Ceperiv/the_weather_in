@@ -1,4 +1,5 @@
 import {createAction, props} from "@ngrx/store";
+
 import {IDailyForecast} from "../intefaces";
 
 export const getDailyForecast = createAction('[DailyForecast] Get daily forecast');

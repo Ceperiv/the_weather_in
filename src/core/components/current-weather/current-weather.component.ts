@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-
-import {CurrentWeatherService} from "../../services";
-import {AppStateInterface, ICurrentWeather} from "../../intefaces";
 import {Observable} from "rxjs";
+
+import {AppStateInterface, ICurrentWeather} from "../../intefaces";
 import {getCurrentWeather} from "../../store-current-weather/actions";
 import {errorSelector, getCurrentWeatherSelector, isLoadingSelector} from "../../store-current-weather/selectors";
 
@@ -26,5 +25,4 @@ export class CurrentWeatherComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(getCurrentWeather());
   };
-
 }

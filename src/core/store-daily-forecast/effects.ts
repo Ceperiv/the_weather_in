@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
+import {catchError, map, mergeMap, of} from "rxjs";
 
 import {
   getDailyForecast,
   getDailyForecastFailure,
   getDailyForecastSuccess
 } from "./actions";
-import {catchError, map, mergeMap, of} from "rxjs";
 import {DailyForecastService} from "../services";
 
 @Injectable()

@@ -11,9 +11,9 @@ import {urls} from "../../configs";
 export class CurrentWeatherService {
 
   constructor(private httpClient: HttpClient) {
-  }
+  };
 
   getCurrentWeather(city: string): Observable<ICurrentWeather> {
-    return this.httpClient.get<ICurrentWeather>(urls.currentWeatherUrl(city))
-  }
+    return this.httpClient.get<ICurrentWeather>(urls.currentWeatherUrl(city));
+  };
 }

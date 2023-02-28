@@ -4,7 +4,6 @@ import {AppStateInterface} from "../intefaces";
 
 const selectFeature = (state: AppStateInterface) => state.current_weather_reducer;
 
-
 export const isLoadingSelector = createSelector(
   selectFeature,
   (state) => state.isLoading);
