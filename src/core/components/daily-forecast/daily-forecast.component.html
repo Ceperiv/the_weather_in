@@ -1,0 +1,16 @@
+<div *ngIf="(forecast$ | async) as weather"> {{weather | json}}</div>
+<h2 *ngIf="isLoading$ | async" >Loading-------</h2>
+<!--<div *ngFor="let weather of forecast$ | async"> {{weather | json}}</div>-->
+<div *ngIf="(error$ | async) as error"> {{error | json}}</div>
+
+
+
+<!--<div *ngFor="let weather of forecast$ | async">-->
+<!--  <h2>{{weather.cod}} - {{weather.city}}</h2>-->
+<!--  <div *ngFor="let list of weather.list" >-->
+<!--    <h4>{{list.clouds.all}}</h4>-->
+<!--    <div *ngFor="let weather of list.weather">-->
+<!--      <p>{{weather.description}}</p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

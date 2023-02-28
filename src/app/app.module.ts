@@ -8,7 +8,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MainLayoutComponent} from './layouts';
-
 import {CoreModule} from "../core/core.module";
 import {environment} from "../environments/environment.dev";
 

@@ -33,7 +33,8 @@ export interface IDailyForecast {
       pop: number,
       sys: { pod: string, },
       dt_txt: string
-    }],
+    }
+  ],
   city: {
     id: number,
     name: string,

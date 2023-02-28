@@ -5,11 +5,11 @@ import {getCurrentWeather, getCurrentWeatherFailure, getCurrentWeatherSuccess} f
 
 export const initialState: IStateCurrentWeather = {
   isLoading: false,
-  myWeather: null,
+  myWeather: [],
   error: null
 };
 
-export const reducers = createReducer(
+export const currentWeatherReducers = createReducer(
   initialState,
   on(getCurrentWeather, (state) => ({
     ...state,
@@ -18,7 +18,7 @@ export const reducers = createReducer(
   on(getCurrentWeatherSuccess, (state, action) => ({
     ...state,
     isLoading: false,
-    myWeather: action.current_weather
+    myWeather: action.currentWeather
   })),
   on(getCurrentWeatherFailure, (state, action) => ({
     ...state,

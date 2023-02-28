@@ -13,6 +13,6 @@ export class DailyForecastService {
   }
 
   getDailyForecast(city: string, days: number): Observable<IDailyForecast[]> {
-    return this.httpClient.get<IDailyForecast[]>(urls.dailyForecast(city, days))
+    return this.httpClient.get<IDailyForecast[]>(urls.dailyForecastUrl(city, days))
   }
 }

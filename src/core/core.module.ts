@@ -3,21 +3,29 @@ import {NgModule} from '@angular/core';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
 
-import {reducers} from './store/reducers';
-import {CurrentWeatherService} from "./services";
-import {CurrentWeatherComponent} from "./components";
-import {CurrentWeatherEffects} from "./store/effects";
-import { DailyForecastComponent } from './components/daily-forecast/daily-forecast.component';
+import {currentWeatherReducers} from './store-current-weather/reducers';
+import {dailyForecastReducers} from "./store-daily-forecast/reducers";
+import {CurrentWeatherService, DailyForecastService} from "./services";
+import {CurrentWeatherEffects} from "./store-current-weather/effects";
+import {DailyForecastEffects} from "./store-daily-forecast/effects";
+import {CurrentWeatherComponent, DailyForecastComponent} from "./components";
+
+const reducers = {
+  w: currentWeatherReducers,
+  f: dailyForecastReducers,
+}
 
 @NgModule({
+
   imports: [
     CommonModule,
-    StoreModule.forFeature('current_weather', reducers),
-    StoreModule.forFeature('xxx', reducers),
-    EffectsModule.forFeature([CurrentWeatherEffects]),
+    StoreModule.forFeature('current_weather_reducer', currentWeatherReducers),
+    StoreModule.forFeature('daily_forecast_reducer', dailyForecastReducers),
+    EffectsModule.forFeature([DailyForecastEffects, CurrentWeatherEffects]),
   ],
-  providers: [CurrentWeatherService],
+  providers: [CurrentWeatherService, DailyForecastService],
   declarations: [CurrentWeatherComponent, DailyForecastComponent],
-  exports: [CurrentWeatherComponent],
+  exports: [CurrentWeatherComponent, DailyForecastComponent],
 })
-export class CoreModule {}
+export class CoreModule {
+}

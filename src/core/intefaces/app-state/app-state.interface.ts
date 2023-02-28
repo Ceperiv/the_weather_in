@@ -1,7 +1,8 @@
 import {IStateCurrentWeather} from "../state-current-weather";
-import {IWeather} from "../weather";
+import {IStateDailyForecast} from "../state-daily-forecast";
+
 
 export interface AppStateInterface {
-  current_weather:IStateCurrentWeather,
-  xxx:IWeather
+    current_weather_reducer: IStateCurrentWeather,
+    daily_forecast_reducer: IStateDailyForecast
 }

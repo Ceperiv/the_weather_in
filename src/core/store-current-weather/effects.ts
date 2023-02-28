@@ -13,11 +13,11 @@ export class CurrentWeatherEffects {
   getCurrentWeather$ = createEffect(() =>
     this.actions$.pipe(ofType(getCurrentWeather), mergeMap(() => {
       return this.currentWeatherService.getCurrentWeather('Lviv')
-        .pipe(map((weather) => getCurrentWeatherSuccess({current_weather: weather})),
+        .pipe(map((weather) => getCurrentWeatherSuccess({currentWeather: weather})),
           catchError(error => {
             return of(getCurrentWeatherFailure({error: 'ERROR ' + error.message}))
           })
-        )
+        );
     }))
-  )
+  );
 }
