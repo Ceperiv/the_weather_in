@@ -1,12 +1,15 @@
-import {IWeather} from "../weather";
-
 export interface ICurrentWeather {
   coord: {
     lon: number,
     lat: number,
   },
 
-  weather: [IWeather],
+  weather: [
+    id: number,
+    main: string,
+    description: string,
+    icon: string
+  ],
 
   base: string,
 

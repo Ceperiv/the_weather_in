@@ -14,6 +14,6 @@ export class CurrentWeatherService {
   }
 
   getCurrentWeather(city: string): Observable<ICurrentWeather> {
-    return this.httpClient.get<ICurrentWeather>(urls.weather(city))
+    return this.httpClient.get<ICurrentWeather>(urls.currentWeather(city))
   }
 }

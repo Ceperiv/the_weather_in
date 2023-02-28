@@ -7,6 +7,7 @@ import {reducers} from './store/reducers';
 import {CurrentWeatherService} from "./services";
 import {CurrentWeatherComponent} from "./components";
 import {CurrentWeatherEffects} from "./store/effects";
+import { DailyForecastComponent } from './components/daily-forecast/daily-forecast.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import {CurrentWeatherEffects} from "./store/effects";
     EffectsModule.forFeature([CurrentWeatherEffects]),
   ],
   providers: [CurrentWeatherService],
-  declarations: [CurrentWeatherComponent],
+  declarations: [CurrentWeatherComponent, DailyForecastComponent],
   exports: [CurrentWeatherComponent],
 })
 export class CoreModule {}
