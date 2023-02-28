@@ -1,0 +1,10 @@
+import {createAction, props} from "@ngrx/store";
+import {ICurrentWeather} from "../intefaces";
+
+export const getCurrentWeather = createAction('[CurrentWeather] Get current weather')
+
+export const getCurrentWeatherSuccess = createAction('[CurrentWeather] Get current weather success',
+  props<{ current_weather: ICurrentWeather }>())
+
+export const getCurrentWeatherFailure = createAction('[CurrentWeather] Get current weather failure',
+  props<{ error: string }>())
