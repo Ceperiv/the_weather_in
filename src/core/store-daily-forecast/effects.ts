@@ -7,7 +7,7 @@ import {
   getDailyForecastFailure,
   getDailyForecastSuccess
 } from "./actions";
-import {DailyForecastService} from "../services";
+import {DailyForecastService} from "../../app/services";
 
 @Injectable()
 export class DailyForecastEffects {

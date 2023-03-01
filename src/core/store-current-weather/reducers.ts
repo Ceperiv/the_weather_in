@@ -1,6 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
 
-import {IStateCurrentWeather} from "../intefaces";
+import {IStateCurrentWeather} from "../app-state";
 import {getCurrentWeather, getCurrentWeatherFailure, getCurrentWeatherSuccess} from "./actions";
 
 export const initialState: IStateCurrentWeather = {

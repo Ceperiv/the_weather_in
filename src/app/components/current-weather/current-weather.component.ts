@@ -2,9 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 
-import {AppStateInterface, ICurrentWeather} from "../../intefaces";
-import {getCurrentWeather} from "../../store-current-weather/actions";
-import {errorSelector, getCurrentWeatherSelector, isLoadingSelector} from "../../store-current-weather/selectors";
+import {ICurrentWeather} from "../../intefaces";
+import {getCurrentWeather} from "../../../core/store-current-weather/actions";
+import {
+  errorSelector,
+  getCurrentWeatherSelector,
+  isLoadingSelector
+} from "../../../core/store-current-weather/selectors";
+import {AppStateInterface} from "../../../core/app-state";
 
 @Component({
   selector: 'app-current-weather',
@@ -12,6 +17,7 @@ import {errorSelector, getCurrentWeatherSelector, isLoadingSelector} from "../..
   styleUrls: ['./current-weather.component.scss']
 })
 export class CurrentWeatherComponent implements OnInit {
+
   isLoading$: Observable<boolean>;
   weather$: Observable<ICurrentWeather | null>;
   error$: Observable<string | null>;

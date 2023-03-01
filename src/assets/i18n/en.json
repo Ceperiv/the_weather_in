@@ -1,0 +1,21 @@
+{
+  "cw": {
+    "city": "City",
+    "country": "Country",
+    "timezone": "Time zone",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "cloudiness": "Cloudiness",
+    "gusts_of_wind": "Gusts of wind",
+    "wind_direction": "Wind direction",
+    "wind_speed": "Wind speed",
+    "visibility": "Visibility",
+    "sea_level": "Atmospheric pressure above sea level",
+    "grnd_level": "Atmospheric pressure above ground level",
+    "humidity": "Humidity",
+    "pressure": "Atmospheric pressure",
+    "feels_like": "Feels like",
+    "temperature": "Temperature",
+    "description":"Description"
+  }
+}

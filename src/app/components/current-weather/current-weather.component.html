@@ -2,6 +2,7 @@
   <div *ngIf="(isLoading$ | async)">Loading.......</div>
 
   <div *ngIf="(weather$ | async) as weather" class="weather_content">
+    <h1>{{'cw.country' | translate}}</h1>
     <ol>
       <li>base - {{weather.base}}</li>
       <li>clouds - {{weather.clouds.all}}</li>

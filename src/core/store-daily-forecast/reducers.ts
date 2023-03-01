@@ -1,6 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
 
-import {IStateDailyForecast} from "../intefaces";
+import {IStateDailyForecast} from "../app-state";
 import {getDailyForecast, getDailyForecastFailure, getDailyForecastSuccess} from "./actions";
 
 export const initialState: IStateDailyForecast = {

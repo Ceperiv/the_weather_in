@@ -1,5 +1,5 @@
-import {IStateCurrentWeather} from "../state-current-weather";
-import {IStateDailyForecast} from "../state-daily-forecast";
+import {IStateCurrentWeather} from "./state-current-weather";
+import {IStateDailyForecast} from "./state-daily-forecast";
 
 
 export interface AppStateInterface {

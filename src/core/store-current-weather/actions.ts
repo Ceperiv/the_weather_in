@@ -1,6 +1,6 @@
 import {createAction, props} from "@ngrx/store";
 
-import {ICurrentWeather} from "../intefaces";
+import {ICurrentWeather} from "../../app/intefaces";
 
 export const getCurrentWeather = createAction('[CurrentWeather] Get current weather');
 

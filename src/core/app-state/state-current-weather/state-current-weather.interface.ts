@@ -1,4 +1,4 @@
-import {ICurrentWeather} from "../current-weather";
+import {ICurrentWeather} from "../../../app/intefaces";
 
 export interface IStateCurrentWeather {
   isLoading: boolean,

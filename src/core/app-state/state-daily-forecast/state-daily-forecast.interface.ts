@@ -1,4 +1,4 @@
-import {IDailyForecast} from "../daily-forecast";
+import {IDailyForecast} from "../../../app/intefaces";
 
 export interface IStateDailyForecast {
   isLoading: boolean,

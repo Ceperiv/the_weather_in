@@ -7,7 +7,7 @@ import {
   getCurrentWeatherFailure,
   getCurrentWeatherSuccess
 } from "./actions";
-import {CurrentWeatherService} from "../services";
+import {CurrentWeatherService} from "../../app/services";
 
 @Injectable()
 export class CurrentWeatherEffects {

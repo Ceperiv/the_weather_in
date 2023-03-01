@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 
-import {getDailyForecast} from "../../store-daily-forecast/actions";
-import {AppStateInterface, IDailyForecast} from "../../intefaces";
-import {errorSelector, getDailyForecastSelector, isLoadingSelector} from "../../store-daily-forecast/selectors";
+import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
+import {IDailyForecast} from "../../intefaces";
+import {errorSelector, getDailyForecastSelector, isLoadingSelector} from "../../../core/store-daily-forecast/selectors";
+import {AppStateInterface} from "../../../core/app-state";
 
 @Component({
   selector: 'app-daily-forecast',

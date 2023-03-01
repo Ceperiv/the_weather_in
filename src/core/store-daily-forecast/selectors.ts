@@ -1,6 +1,6 @@
 import {createSelector} from "@ngrx/store";
 
-import {AppStateInterface} from "../intefaces";
+import {AppStateInterface} from "../app-state";
 
 const selectFeature = (state: AppStateInterface) => state.daily_forecast_reducer;
 
