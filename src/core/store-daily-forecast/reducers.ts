@@ -5,7 +5,7 @@ import {getDailyForecast, getDailyForecastFailure, getDailyForecastSuccess} from
 
 export const initialState: IStateDailyForecast = {
   isLoading: false,
-  myForecast: [],
+  myForecast: null,
   error: null,
 };
 

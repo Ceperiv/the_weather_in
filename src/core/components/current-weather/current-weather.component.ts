@@ -13,7 +13,7 @@ import {errorSelector, getCurrentWeatherSelector, isLoadingSelector} from "../..
 })
 export class CurrentWeatherComponent implements OnInit {
   isLoading$: Observable<boolean>;
-  weather$: Observable<ICurrentWeather | []>;
+  weather$: Observable<ICurrentWeather | null>;
   error$: Observable<string | null>;
 
   constructor(private store: Store<AppStateInterface>) {

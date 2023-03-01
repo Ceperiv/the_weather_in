@@ -1,45 +1,47 @@
-<div *ngIf="(isLoading$ | async)">Loading.......</div>
+<div class="wrap_current_weather">
+  <div *ngIf="(isLoading$ | async)">Loading.......</div>
 
-<div *ngIf="(error$ | async) as err">{{err}}</div>
+  <div *ngIf="(weather$ | async) as weather" class="weather_content">
+    <ol>
+      <li>base - {{weather.base}}</li>
+      <li>clouds - {{weather.clouds.all}}</li>
+      <li>cod - {{weather.cod}}</li>
+      <li>lat - {{weather.coord.lat}}</li>
+      <li>lon - {{weather.coord.lon}}</li>
+      <li>dt - {{weather.dt}}</li>
+      <li>feels_like - {{weather.main.feels_like}}</li>
 
-<div *ngIf="(weather$ | async) as weather" class="weather">{{weather | json}}
-  <!--  <ol>-->
-  <!--    <li>id - {{weather.id}}</li>-->
-  <!--    <li>base - {{weather.base}}</li>-->
-  <!--    <li>clouds - {{weather.clouds.all}}</li>-->
-  <!--    <li>cod - {{weather.cod}}</li>-->
-  <!--    <li>lat - {{weather.coord.lat}}</li>-->
-  <!--    <li>lon - {{weather.coord.lon}}</li>-->
-  <!--    <li>dt - {{weather.dt}}</li>-->
-  <!--    <li>feels_like - {{weather.main.feels_like}}</li>-->
+      <li>w_name - {{weather.name}}</li>
+      <li>w_sys_country - {{weather.sys.country}}</li>
+      <li>w_sys_id - {{weather.sys.id}}</li>
+      <li>w_sys_sunrise - {{weather.sys.sunrise}}</li>
+      <li>w_sys_sunset - {{weather.sys.sunset}}</li>
+      <li>w_sys_type - {{weather.sys.type}}</li>
+      <li>timezone - {{weather.timezone}}</li>
+      <li>visibility - {{weather.visibility}}</li>
+      <li>wind_deg - {{weather.wind.deg}}</li>
+      <li>wind_speed - {{weather.wind.speed}}</li>
+    </ol>
 
-  <!--    <li>w_name - {{weather.name}}</li>-->
-  <!--    <li>w_sys_country - {{weather.sys.country}}</li>-->
-  <!--    <li>w_sys_id - {{weather.sys.id}}</li>-->
-  <!--    <li>w_sys_sunrise - {{weather.sys.sunrise}}</li>-->
-  <!--    <li>w_sys_sunset - {{weather.sys.sunset}}</li>-->
-  <!--    <li>w_sys_type - {{weather.sys.type}}</li>-->
-  <!--    <li>timezone - {{weather.timezone}}</li>-->
-  <!--    <li>visibility - {{weather.visibility}}</li>-->
-  <!--    <li>wind_deg - {{weather.wind.deg}}</li>-->
-  <!--    <li>wind_speed - {{weather.wind.speed}}</li>-->
-  <!--  </ol>-->
+    <div *ngFor="let weatherInfo of weather.weather">
+      <p>w_id - {{weatherInfo.id}}</p>
+      <p>Description: {{weatherInfo.description}}</p>
+      <img style="width: 100px" src="http://openweathermap.org/img/w/{{weatherInfo.icon}}.png" alt="{{weatherInfo.id}}">
+      <p> icon -{{weatherInfo.icon}}</p>
+      <p>weather_main - {{weatherInfo.main}}</p>
+    </div>
 
-  <!--  <div  *ngFor="let weather of weather.weather">-->
-  <!--    <p>w_id - {{weather.id}}</p>-->
-  <!--    <p>Description: {{weather.description}}</p>-->
-  <!--    <img src="http://openweathermap.org/img/w/{{weather.icon}}.png" alt="{{weather.id}}">-->
-  <!--    <p> icon -{{weather.icon}}</p>-->
-  <!--    <p>weather_main - {{weather.main}}</p>-->
-  <!--  </div>-->
+    <div>
+      <ul>
+        <li>humidity {{weather.main.humidity}}</li>
+        <li>pressure {{weather.main.pressure}}</li>
+        <li>temp {{weather.main.temp}}</li>
+        <li>t_max {{weather.main.temp_max}}</li>
+        <li>t_mim{{weather.main.temp_min}}</li>
+      </ul>
+    </div>
+  </div>
 
-  <!--  <div>-->
-  <!--    <ul>-->
-  <!--      <li>humidity {{weather.main.humidity}}</li>-->
-  <!--      <li>pressure {{weather.main.pressure}}</li>-->
-  <!--      <li>temp {{weather.main.temp}}</li>-->
-  <!--      <li>t_max {{weather.main.temp_max}}</li>-->
-  <!--      <li>t_mim{{weather.main.temp_min}}</li>-->
-  <!--    </ul>-->
-  <!--  </div>-->
+  <div *ngIf="(error$ | async) as err">{{err}}</div>
 </div>
+

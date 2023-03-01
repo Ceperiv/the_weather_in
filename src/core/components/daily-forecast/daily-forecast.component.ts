@@ -13,7 +13,7 @@ import {errorSelector, getDailyForecastSelector, isLoadingSelector} from "../../
 })
 export class DailyForecastComponent implements OnInit {
   isLoading$: Observable<boolean>;
-  forecast$: Observable<IDailyForecast[] | []>;
+  forecast$: Observable<IDailyForecast | null>;
   error$: Observable<string | null>;
 
   constructor(private store: Store<AppStateInterface>) {

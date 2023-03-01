@@ -13,7 +13,7 @@ export class DailyForecastService {
   constructor(private httpClient: HttpClient) {
   };
 
-  getDailyForecast(city: string, days: number): Observable<IDailyForecast[]> {
-    return this.httpClient.get<IDailyForecast[]>(urls.dailyForecastUrl(city, days));
+  getDailyForecast(city: string, days: number): Observable<IDailyForecast> {
+    return this.httpClient.get<IDailyForecast>(urls.dailyForecastUrl(city, days));
   };
 }

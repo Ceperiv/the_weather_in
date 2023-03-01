@@ -5,7 +5,7 @@ import {getCurrentWeather, getCurrentWeatherFailure, getCurrentWeatherSuccess} f
 
 export const initialState: IStateCurrentWeather = {
   isLoading: false,
-  myWeather: [],
+  myWeather: null,
   error: null,
 };
 

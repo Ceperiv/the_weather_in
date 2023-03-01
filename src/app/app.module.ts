@@ -27,7 +27,8 @@ import {environment} from "../environments/environment.dev";
       maxAge: 25,
       logOnly: environment.production,
       autoPause: true
-    })
+    }),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
