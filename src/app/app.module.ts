@@ -9,17 +9,14 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MainLayoutComponent} from './layouts';
 import {CoreModule} from "../core/core.module";
 import {environment} from "../environments/environment.dev";
-import { HeaderComponent } from './components';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
-
-
+import {HeaderComponent} from './components';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -55,8 +52,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       defaultLanguage: 'en',
     }),
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]

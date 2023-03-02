@@ -10,16 +10,22 @@ import {CurrentWeatherEffects} from "./store-current-weather/effects";
 import {DailyForecastEffects} from "./store-daily-forecast/effects";
 import {CurrentWeatherComponent, DailyForecastComponent} from "../app/components";
 import {TranslateModule} from "@ngx-translate/core";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
 
-    imports: [
-        CommonModule,
-        StoreModule.forFeature('current_weather_reducer', currentWeatherReducers),
-        StoreModule.forFeature('daily_forecast_reducer', dailyForecastReducers),
-        EffectsModule.forFeature([DailyForecastEffects, CurrentWeatherEffects]),
-        TranslateModule,
-    ],
+  imports: [
+    CommonModule,
+    StoreModule.forFeature('current_weather_reducer', currentWeatherReducers),
+    StoreModule.forFeature('daily_forecast_reducer', dailyForecastReducers),
+    EffectsModule.forFeature([DailyForecastEffects, CurrentWeatherEffects]),
+    TranslateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+  ],
   providers: [CurrentWeatherService, DailyForecastService],
   declarations: [CurrentWeatherComponent, DailyForecastComponent],
   exports: [CurrentWeatherComponent, DailyForecastComponent],

@@ -2,7 +2,33 @@
   <div *ngIf="(isLoading$ | async)">Loading.......</div>
 
   <div *ngIf="(weather$ | async) as weather" class="weather_content">
-    <h1>{{'cw.country' | translate}}</h1>
+
+    <div class="city_input_container"><h1> the weather in</h1>
+      <form class="city_input_form">
+        <mat-form-field class="form_field">
+          <mat-label>{{'cw.city' | translate}}</mat-label>
+          <div class="input_city_block">
+            <input type="text"
+                   matInput [formControl]="chooseCity"
+                   placeholder="Kyiv"
+                   [errorStateMatcher]="matcher"
+                   (keydown.enter)="checkCity($event)"/>
+            <a (click)="checkCity($event)"><i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <mat-hint>{{'cw.select_settlement' | translate}}</mat-hint>
+          <mat-error *ngIf="chooseCity.hasError('minlength') && !chooseCity.hasError('required')">
+            Please enter more than 2 characters
+          </mat-error>
+          <mat-error *ngIf="chooseCity.hasError('maxlength') && !chooseCity.hasError('required')">
+            Please enter less than 20 characters
+          </mat-error>
+          <mat-error *ngIf="chooseCity.hasError('required')">
+            <strong>{{'cw.city_is_required'| translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+
     <ol>
       <li>base - {{weather.base}}</li>
       <li>clouds - {{weather.clouds.all}}</li>

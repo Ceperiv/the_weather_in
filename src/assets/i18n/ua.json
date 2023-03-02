@@ -1,6 +1,7 @@
 {
   "cw": {
-    "city": "City",
+    "city": "Місто",
+    "city_is_required": "City is required",
     "country": "Країна",
     "timezone": "Time zone",
     "sunrise": "Sunrise",
@@ -16,6 +17,7 @@
     "pressure": "Atmospheric pressure",
     "feels_like": "Feels like",
     "temperature": "Temperature",
-    "description":"Description"
+    "description":"Description",
+    "select_settlement":"Select a settlement"
   }
 }

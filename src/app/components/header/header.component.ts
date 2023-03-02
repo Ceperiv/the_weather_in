@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit{
-  languageList = [
+  languageList =  [
     {code: 'en', label: 'English'},
     {code: 'ua', label: 'Українська'}
   ];
