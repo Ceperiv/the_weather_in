@@ -11,19 +11,25 @@ import {
   isLoadingSelector
 } from "../../../core/store-current-weather/selectors";
 import {AppStateInterface} from "../../../core/app-state";
-import {FormControl, Validators} from "@angular/forms";
+import {FormControl, FormGroupDirective, NgForm, Validators} from "@angular/forms";
+import {urls} from "../../configs";
+import {CurrentWeatherService} from "../../services";
 
 @Component({
   selector: 'app-current-weather',
   templateUrl: './current-weather.component.html',
   styleUrls: ['./current-weather.component.scss']
 })
-export class CurrentWeatherComponent implements OnInit {
+export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
   isLoading$: Observable<boolean>;
   weather$: Observable<ICurrentWeather | null>;
   error$: Observable<string | null>;
 
-  constructor(private store: Store<AppStateInterface>) {
+  matcher = new ErrorStateMatcher()
+
+
+  constructor(private store: Store<AppStateInterface>,
+              private currentWeatherService: CurrentWeatherService) {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.weather$ = this.store.pipe(select(getCurrentWeatherSelector));
     this.error$ = this.store.pipe(select(errorSelector));
@@ -33,17 +39,37 @@ export class CurrentWeatherComponent implements OnInit {
     this.store.dispatch(getCurrentWeather());
   };
 
-  chooseCity =  new FormControl('',
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+
+  chooseCity: FormControl = new FormControl('',
     [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(20),
     ]);
 
-  matcher = new ErrorStateMatcher()
+  getIconUrl(iconId: string): string {
+    return urls.iconUrl(iconId)
+  }
+
+  mathRound(number: number): string {
+    const t = Math.round(number)
+    let temperature = ''
+    if (t > 0) temperature = `+ ${t}`
+    if (t < 0) temperature = `${t}`
+    if (t === 0) temperature = `0`
+    return temperature
+  }
+
 
   checkCity(e: any) {
-    if(!this.chooseCity.invalid)
-    console.log(this.chooseCity.value);
+    if (!this.chooseCity.invalid) {
+      this.currentWeatherService.setCity(this.chooseCity.value)
+      this.store.dispatch(getCurrentWeather());
+
+    }
+    e.preventDefault()
   }
 }

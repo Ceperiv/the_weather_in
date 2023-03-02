@@ -18,7 +18,9 @@ export const currentWeatherReducers = createReducer(
   on(getCurrentWeatherSuccess, (state, action) => ({
     ...state,
     isLoading: false,
+    error: null,
     myWeather: action.currentWeather,
+
   })),
   on(getCurrentWeatherFailure, (state, action) => ({
     ...state,

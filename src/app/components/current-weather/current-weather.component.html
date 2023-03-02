@@ -1,70 +1,67 @@
 <div class="wrap_current_weather">
   <div *ngIf="(isLoading$ | async)">Loading.......</div>
 
+  <div class="city_input_container">
+    <div class="main_title">
+      <h1> the weather in </h1>
+    </div>
+
+    <form class="city_input_form">
+      <mat-form-field class="form_field">
+        <mat-label>{{'cw.city' | translate}}</mat-label>
+        <div class="input_city_block">
+          <input type="text"
+                 matInput [formControl]="chooseCity"
+                 placeholder="Kyiv"
+                 [errorStateMatcher]="matcher"
+                 (keydown.enter)="checkCity($event)"/>
+          <a (click)="checkCity($event)"><i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <mat-hint>{{'cw.select_settlement' | translate}}</mat-hint>
+        <mat-error *ngIf="chooseCity.hasError('minlength') && !chooseCity.hasError('required')">
+          Please enter more than 2 characters
+        </mat-error>
+        <mat-error *ngIf="chooseCity.hasError('maxlength') && !chooseCity.hasError('required')">
+          Please enter less than 20 characters
+        </mat-error>
+        <mat-error *ngIf="chooseCity.hasError('required')">
+          <strong>{{'cw.city_is_required'| translate}}</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
   <div *ngIf="(weather$ | async) as weather" class="weather_content">
 
-    <div class="city_input_container"><h1> the weather in</h1>
-      <form class="city_input_form">
-        <mat-form-field class="form_field">
-          <mat-label>{{'cw.city' | translate}}</mat-label>
-          <div class="input_city_block">
-            <input type="text"
-                   matInput [formControl]="chooseCity"
-                   placeholder="Kyiv"
-                   [errorStateMatcher]="matcher"
-                   (keydown.enter)="checkCity($event)"/>
-            <a (click)="checkCity($event)"><i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-          <mat-hint>{{'cw.select_settlement' | translate}}</mat-hint>
-          <mat-error *ngIf="chooseCity.hasError('minlength') && !chooseCity.hasError('required')">
-            Please enter more than 2 characters
-          </mat-error>
-          <mat-error *ngIf="chooseCity.hasError('maxlength') && !chooseCity.hasError('required')">
-            Please enter less than 20 characters
-          </mat-error>
-          <mat-error *ngIf="chooseCity.hasError('required')">
-            <strong>{{'cw.city_is_required'| translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-      </form>
+    <div class="w_block_1" *ngFor="let weatherInfo of weather.weather">
+      <span class="w_ico">
+        <img src="{{getIconUrl(weatherInfo.icon)}}" alt="{{weatherInfo.description}}">
+        <span class="w_description">{{weatherInfo.description}}</span>
+      </span>
     </div>
 
-    <ol>
-      <li>base - {{weather.base}}</li>
-      <li>clouds - {{weather.clouds.all}}</li>
-      <li>cod - {{weather.cod}}</li>
-      <li>lat - {{weather.coord.lat}}</li>
-      <li>lon - {{weather.coord.lon}}</li>
-      <li>dt - {{weather.dt}}</li>
-      <li>feels_like - {{weather.main.feels_like}}</li>
-
-      <li>w_name - {{weather.name}}</li>
-      <li>w_sys_country - {{weather.sys.country}}</li>
-      <li>w_sys_id - {{weather.sys.id}}</li>
-      <li>w_sys_sunrise - {{weather.sys.sunrise}}</li>
-      <li>w_sys_sunset - {{weather.sys.sunset}}</li>
-      <li>w_sys_type - {{weather.sys.type}}</li>
-      <li>timezone - {{weather.timezone}}</li>
-      <li>visibility - {{weather.visibility}}</li>
-      <li>wind_deg - {{weather.wind.deg}}</li>
-      <li>wind_speed - {{weather.wind.speed}}</li>
-    </ol>
-
-    <div *ngFor="let weatherInfo of weather.weather">
-      <p>w_id - {{weatherInfo.id}}</p>
-      <p>Description: {{weatherInfo.description}}</p>
-      <img style="width: 100px" src="http://openweathermap.org/img/w/{{weatherInfo.icon}}.png" alt="{{weatherInfo.id}}">
-      <p> icon -{{weatherInfo.icon}}</p>
-      <p>weather_main - {{weatherInfo.main}}</p>
+    <div class="w_block_2">
+      <span>
+        <h2 class="city_name" *ngIf="(weather$ | async) as weather"> {{weather.name}}</h2>
+        <h2 class="city_name" >{{mathRound(weather.main.temp)}} &deg;C</h2>
+      </span>
+      <ul>
+<!--        <li>{{ 'cw.temperature' | translate}} {{mathRound(weather.main.temp)}} &deg;C</li>-->
+        <li>{{ 'cw.feels_like' | translate}}  {{mathRound(weather.main.feels_like)}} &deg;C</li>
+        <li>{{ 'cw.humidity' | translate}} {{weather.main.humidity}} %</li>
+        <li>{{ 'cw.pressure' | translate}} {{weather.main.pressure}} hPa</li>
+        <li>{{ 'cw.visibility' | translate}} {{weather.visibility / 1000}} km</li>
+      </ul>
     </div>
 
-    <div>
+    <div class="w_block_3">
       <ul>
         <li>humidity {{weather.main.humidity}}</li>
         <li>pressure {{weather.main.pressure}}</li>
         <li>temp {{weather.main.temp}}</li>
         <li>t_max {{weather.main.temp_max}}</li>
         <li>t_mim{{weather.main.temp_min}}</li>
+
       </ul>
     </div>
   </div>
