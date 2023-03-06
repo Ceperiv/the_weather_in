@@ -25,6 +25,7 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
   weather$: Observable<ICurrentWeather | null>;
   error$: Observable<string | null>;
 
+  math = Math
   matcher = new ErrorStateMatcher()
 
   constructor(private store: Store<AppStateInterface>,
@@ -56,23 +57,37 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
   mathRound(number: number): string {
     const t = Math.round(number)
     let temperature = ''
-    if (t > 0) temperature = `+ ${t}`
+    if (t > 0) temperature = `+${t}`
     if (t < 0) temperature = `${t}`
     if (t === 0) temperature = `0`
     return temperature
   }
 
-  getCardinalDirection(angle:number):string {
+  getWindSpeed(speed: number): number {
+    return Math.round((speed * (10 / 36)) * 10) / 10
+  }
+
+  getCardinalDirection(angle: number): string {
     // const directions = ['↑ N', '↗ NE', '→ E', '↘ SE', '↓ S', '↙ SW', '← W', '↖ NW'];
     const directions = ['↑ ', '↗', '→', '↘', '↓', '↙', '←', '↖'];
     return directions[Math.round(angle / 45) % 8];
   }
 
-  checkCity(e: any) {
-    if (!this.chooseCity.invalid) {
+  getDate(utc: number, timeZone: number): string {
+    const locateString = (new Date((utc + timeZone) * 1000)).toLocaleString()
+    return locateString.split(' ')[1];
+  }
+
+  async checkCity(e: any) {
+    let err = null
+     await this.error$.subscribe(value => err = value)
+     if (!this.chooseCity.invalid) {
       this.currentWeatherService.setCity(this.chooseCity.value)
       this.store.dispatch(getCurrentWeather());
-      this.storageService.setLocalInfo(this.chooseCity.value)
+      console.log(err)
+      if (err === null) {
+        this.storageService.setLocalInfo(this.chooseCity.value)
+      }
     }
     e.preventDefault()
   };

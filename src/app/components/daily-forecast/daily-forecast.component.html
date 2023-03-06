@@ -1,16 +1,14 @@
 <div class="wrap_forecast">
   <h2 *ngIf="isLoading$ | async">Loading-------</h2>
 
-  <div *ngIf="forecast$ | async as weatherArr">
-    <h4>days {{weatherArr.cnt}}</h4>
+  <div class="forecast_content" *ngIf="forecast$ | async as weatherArr">
 
-    <div  class="forecast_content" *ngFor="let weather of weatherArr.list">
+    <div class="daily"  *ngFor="let weather of weatherArr.list">
 
         <h4>{{weather.wind.gust}}</h4>
         <h4>{{weather.clouds.all}}</h4>
-        <h4>{{weather.main.humidity}}</h4>
+        <h4>{{weather.main.humidity}}</h4></div>
 
-    </div>
   </div>
 
     <div *ngIf="(error$ | async) as error"> {{error | json}}</div>

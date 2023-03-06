@@ -12,8 +12,10 @@
     width: 200px;
     max-height: 70px;
   }
-  ::ng-deep .mat-mdc-text-field-wrapper{
-     background: transparent;
+
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    background: transparent;
+
   }
 
   ._title {
@@ -55,4 +57,13 @@
   }
 
 
+}
+
+::ng-deep .mdc-menu-surface {
+  background: darkslategrey;
+  color: brown;
+}
+
+::ng-deep .mdc-list-item__primary-text{
+  color: burlywood;
 }

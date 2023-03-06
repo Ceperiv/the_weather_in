@@ -1,7 +1,16 @@
 .wrap_forecast{
   width: 100%;
+
   .forecast_content{
     width: 100%;
     border: brown 1px solid;
+    display: flex;
+    flex-wrap: wrap;
+    .daily{
+      width: 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 }

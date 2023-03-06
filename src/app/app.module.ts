@@ -17,6 +17,7 @@ import {MainLayoutComponent} from './layouts';
 import {CoreModule} from "../core/core.module";
 import {environment} from "../environments/environment.dev";
 import {HeaderComponent} from './components';
+import { ChosenForecastComponent } from './components/chosen-forecast/chosen-forecast.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -27,6 +28,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     MainLayoutComponent,
     HeaderComponent,
+    ChosenForecastComponent,
   ],
   imports: [
     BrowserAnimationsModule,

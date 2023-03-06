@@ -24,7 +24,7 @@
   .city_input_container {
     display: flex;
 
-    ::ng-deep .mat-mdc-text-field-wrapper{
+    ::ng-deep .mat-mdc-text-field-wrapper {
       background: silver;
     }
 
@@ -56,19 +56,24 @@
     padding-bottom: 10px;
 
     .w_block_1 {
-      width: 30%;
+      width: 15%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-right: 30px;
 
       .w_ico {
         position: relative;
 
         img {
-          width: 200px;
+          width: 150px;
         }
 
         .w_description {
           position: absolute;
           left: 20%;
-          bottom: 50px;
+          bottom: 25px;
           font-family: 'Caveat', cursive;
           font-size: 25px;
         }
@@ -76,7 +81,7 @@
     }
 
     .w_block_2 {
-      width: 30%;
+      width: 33%;
 
       .city_name {
         font-size: 30px;
@@ -93,7 +98,7 @@
     }
 
     .w_block_3 {
-      width: 30%;
+      width: 25%;
 
       ul {
         font-size: 16px;
@@ -106,31 +111,63 @@
         position: relative;
         margin-top: 25px;
 
-        p{
+        p {
           color: darkgoldenrod;
           z-index: 99;
           position: absolute;
           left: 0;
           top: -20px;
         }
-        .wind_direction_img{
+
+        .wind_direction_img {
           width: 150px;
           position: absolute;
           left: 0;
           top: 0;
           border-radius: 50%;
           opacity: .6;
+          margin-top: 5px;
         }
 
         .direction {
           color: darkslategrey;
           position: absolute;
-          left:40px;
-          top: 40px;
+          left: 44px;
+          top: 44px;
           padding-top: 20px;
           width: 200px;
           font-size: 100px;
         }
+      }
+    }
+
+    .w_block_4 {
+      width: 23%;
+      .country{
+        font-size: 30px;
+        font-weight: bolder;
+        letter-spacing: .5rem;
+        color: burlywood;
+        text-align: right;
+      }
+
+      ul {
+        font-size: 16px;
+        list-style: none;
+        color: darkgoldenrod;
+
+        li {
+          display: flex;
+          margin-top: 5px;
+
+          img {
+            width: 50px;
+            margin-right: 5px;
+            opacity: .6;
+            border-radius: 50px;
+          }
+        }
+
       }
     }
   }
