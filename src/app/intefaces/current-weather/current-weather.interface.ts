@@ -27,7 +27,8 @@ export interface ICurrentWeather {
 
   wind: {
     speed: number,
-    deg: number
+    deg: number,
+    dust: number,
   },
 
   clouds: {

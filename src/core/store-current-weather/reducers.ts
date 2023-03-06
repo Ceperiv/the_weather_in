@@ -7,6 +7,7 @@ export const initialState: IStateCurrentWeather = {
   isLoading: false,
   myWeather: null,
   error: null,
+  city_storage: ''
 };
 
 export const currentWeatherReducers = createReducer(
@@ -20,6 +21,7 @@ export const currentWeatherReducers = createReducer(
     isLoading: false,
     error: null,
     myWeather: action.currentWeather,
+    city_storage: action.city_storage
 
   })),
   on(getCurrentWeatherFailure, (state, action) => ({

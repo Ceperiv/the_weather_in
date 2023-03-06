@@ -8,12 +8,12 @@ import {getCurrentWeather} from "../../../core/store-current-weather/actions";
 import {
   errorSelector,
   getCurrentWeatherSelector,
-  isLoadingSelector
+  isLoadingSelector,
 } from "../../../core/store-current-weather/selectors";
 import {AppStateInterface} from "../../../core/app-state";
 import {FormControl, FormGroupDirective, NgForm, Validators} from "@angular/forms";
 import {urls} from "../../configs";
-import {CurrentWeatherService} from "../../services";
+import {CityLocalStorageService, CurrentWeatherService} from "../../services";
 
 @Component({
   selector: 'app-current-weather',
@@ -27,9 +27,9 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
 
   matcher = new ErrorStateMatcher()
 
-
   constructor(private store: Store<AppStateInterface>,
-              private currentWeatherService: CurrentWeatherService) {
+              private currentWeatherService: CurrentWeatherService,
+              private storageService: CityLocalStorageService) {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.weather$ = this.store.pipe(select(getCurrentWeatherSelector));
     this.error$ = this.store.pipe(select(errorSelector));
@@ -45,7 +45,6 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
 
   chooseCity: FormControl = new FormControl('',
     [
-      Validators.required,
       Validators.minLength(2),
       Validators.maxLength(20),
     ]);
@@ -63,13 +62,18 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
     return temperature
   }
 
+  getCardinalDirection(angle:number):string {
+    // const directions = ['↑ N', '↗ NE', '→ E', '↘ SE', '↓ S', '↙ SW', '← W', '↖ NW'];
+    const directions = ['↑ ', '↗', '→', '↘', '↓', '↙', '←', '↖'];
+    return directions[Math.round(angle / 45) % 8];
+  }
 
   checkCity(e: any) {
     if (!this.chooseCity.invalid) {
       this.currentWeatherService.setCity(this.chooseCity.value)
       this.store.dispatch(getCurrentWeather());
-
+      this.storageService.setLocalInfo(this.chooseCity.value)
     }
     e.preventDefault()
-  }
+  };
 }

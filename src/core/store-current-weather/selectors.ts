@@ -16,4 +16,8 @@ export const errorSelector = createSelector(
   selectFeature,
   (state) => state.error);
 
+export const cityStorageSelector = createSelector(
+  selectFeature,
+  (state) => state.city_storage);
+
 

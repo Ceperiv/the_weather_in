@@ -3,7 +3,7 @@
 
   <div class="city_input_container">
     <div class="main_title">
-      <h1> the weather in </h1>
+      <h2> the weather in </h2>
     </div>
 
     <form class="city_input_form">
@@ -18,14 +18,11 @@
           <a (click)="checkCity($event)"><i class="fa-solid fa-arrow-right"></i></a>
         </div>
         <mat-hint>{{'cw.select_settlement' | translate}}</mat-hint>
-        <mat-error *ngIf="chooseCity.hasError('minlength') && !chooseCity.hasError('required')">
+        <mat-error *ngIf="chooseCity.hasError('minlength')">
           Please enter more than 2 characters
         </mat-error>
-        <mat-error *ngIf="chooseCity.hasError('maxlength') && !chooseCity.hasError('required')">
+        <mat-error *ngIf="chooseCity.hasError('maxlength')">
           Please enter less than 20 characters
-        </mat-error>
-        <mat-error *ngIf="chooseCity.hasError('required')">
-          <strong>{{'cw.city_is_required'| translate}}</strong>
         </mat-error>
       </mat-form-field>
     </form>
@@ -47,22 +44,23 @@
       </span>
       <ul>
 <!--        <li>{{ 'cw.temperature' | translate}} {{mathRound(weather.main.temp)}} &deg;C</li>-->
-        <li>{{ 'cw.feels_like' | translate}}  {{mathRound(weather.main.feels_like)}} &deg;C</li>
-        <li>{{ 'cw.humidity' | translate}} {{weather.main.humidity}} %</li>
-        <li>{{ 'cw.pressure' | translate}} {{weather.main.pressure}} hPa</li>
-        <li>{{ 'cw.visibility' | translate}} {{weather.visibility / 1000}} km</li>
+        <li>{{ 'cw.feels_like'|translate}}  {{mathRound(weather.main.feels_like)}} &deg;C</li>
+        <li>{{ 'cw.humidity'|translate}} {{weather.main.humidity}} %</li>
+        <li>{{ 'cw.pressure'|translate}} {{weather.main.pressure}} hPa</li>
+        <li>{{ 'cw.visibility'|translate}} {{weather.visibility / 1000}} km</li>
       </ul>
     </div>
 
     <div class="w_block_3">
       <ul>
-        <li>humidity {{weather.main.humidity}}</li>
-        <li>pressure {{weather.main.pressure}}</li>
-        <li>temp {{weather.main.temp}}</li>
-        <li>t_max {{weather.main.temp_max}}</li>
-        <li>t_mim{{weather.main.temp_min}}</li>
-
+        <li>{{'cw.wind_speed'|translate}} {{weather.wind.speed}} km/h</li>
+        <li *ngIf="weather.wind.dust"> {{'cw.gusts_of_wind'|translate}} {{weather.wind.dust}} km/h</li>
       </ul>
+        <div class="wind_direction">
+          <p>{{'cw.wind_direction'|translate}}</p>
+          <img class="wind_direction_img" src="assets/common/compass-1-420x424.jpg" alt="compass"/>
+          <div class="direction"> {{getCardinalDirection(weather.wind.deg)}}</div>
+        </div>
     </div>
   </div>
 

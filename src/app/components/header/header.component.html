@@ -1,12 +1,24 @@
 <header class="header">
   <mat-form-field appearance="fill" class="select_lang">
     <mat-label class="mat_label">Language</mat-label>
-    <mat-select  [value]="languageList[0].code">
-      <mat-option class="mat_option" *ngFor="let lang of languageList" [value]="lang.code" (click)=changeLang(lang.code)>
+    <mat-select [value]="languageList[0].code">
+      <mat-option class="mat_option" *ngFor="let lang of languageList" [value]="lang.code"
+                  (click)=changeLang(lang.code)>
         {{lang.label}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
+
+    <div class="_title">
+      <h1> the weather in </h1>
+    </div>
+
+    <div class="preSelected" *ngIf="preSelected$ | async as preSelected">
+      <div class="city_name" *ngFor="let pre of preSelected.city">
+        <a (click)="setCity(pre)">{{pre}}</a>
+      </div>
+
+    </div>
 
 </header>
