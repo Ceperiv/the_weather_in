@@ -2,25 +2,22 @@
   <h2 *ngIf="isLoading$ | async">Loading-------</h2>
 
   <div class="forecast_content" *ngIf="forecast$ | async as weatherArr">
-
     <div class="daily" *ngFor="let forecast of forecastDaily">
 
-
-      <h2>{{(getDate(forecast[0].dt, weatherArr.city.timezone) | translate)}}</h2>
+      <h2>{{(getDay(forecast[0].dt, weatherArr.city.timezone) | translate)}}</h2>
       <p>{{forecast[0].dt_txt.toString().split(' ')[0]}}</p>
-      <h4>{{forecast[0].weather[0].description}}</h4>
-      <h4>{{forecast[0].clouds.all}}</h4>
 
       <span class="w_ico">
-      <img src="{{getIconUrl(forecast[0].weather[0].icon)}}" alt="{{forecast[0].weather[0].description}}">
-      <span class="w_description">{{forecast[0].weather[0].description}}</span>
-
-      <h4>{{forecast[0].main.temp}} C</h4>
+      <img src="{{getIconUrl(forecast[4] ? forecast[5].weather[0].icon : forecast[0].weather[0].icon)}}"
+           alt="{{forecast[0].weather[0].description}}">
+      <span class="w_description">{{forecast[0].weather[0].description}}
       </span>
+      </span>
+
+      <h4>max: {{getMinTemp(forecast).minTemp}}&deg;C</h4>
+      <h4>min: {{getMinTemp(forecast).maxTemp}}&deg;C</h4>
+
     </div>
-
-
   </div>
-  <button (click)="xxx()">xxx</button>
   <div *ngIf="(error$ | async) as error"> {{error | json}}</div>
 </div>

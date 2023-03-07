@@ -85,7 +85,10 @@ export class DailyForecastService {
           (this.lengthArrOf1stDay + 7) + i * 8,
         ]
         const bufferArr: any = []
-        nextDayIndices.forEach(j => Object.assign(bufferArr.push(this.forecastArr[j])));
+        nextDayIndices.forEach(j => {
+          const arr = this.forecastArr[j] || undefined
+          if(arr !== undefined) bufferArr.push(arr)
+        });
         this.forecastDaily.push(bufferArr)
       }
     }

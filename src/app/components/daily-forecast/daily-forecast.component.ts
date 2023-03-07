@@ -32,31 +32,49 @@ export class DailyForecastComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(getDailyForecast());
     this.store.pipe(select(getDailyForecastSelector))
-      .subscribe(value => this.forecastDaily = this.service.getDailyForecastArr(value))
+      .subscribe(value => {
+        this.forecastDaily = this.service.getDailyForecastArr(value)
+        console.log(this.forecastDaily)
+      })
 
   };
 
 
   getIconUrl(iconId: string): string {
     return urls.iconUrl(iconId)
-  }
+  };
 
 
-  getDate(utc: number, timeZone: number): any {
+  getDay(utc: number, timeZone: number): any {
     const day = (new Date((utc + timeZone) * 1000)).toString().split(' ')[0]
-    console.log(day)
+    return `day.${day}`
+  };
 
-    if(day === 'Tue'){
+  getMinTemp(arr: IDailyForecastList[]): { minTemp: string, maxTemp: string } {
+    let maxTemp = arr[0].main.temp
+    let minTemp = arr[0].main.temp
+    let temp: number
 
-    return 'cw.city'
-    } else{
+    arr.map(value => {
+      temp = value.main.temp
+      if (maxTemp < temp) {
+        maxTemp = temp
+      }
+      if (minTemp > temp) {
+        minTemp = temp
+      }
+    });
+    return {minTemp:this.mathRound(minTemp), maxTemp:this.mathRound(maxTemp)}
+  };
 
-    return  day
-    }
-  }
+  mathRound(number: number): string {
+    const t = Math.round(number)
+    let temperature = ''
+    if (t > 0) temperature = `+${t}`
+    if (t < 0) temperature = `${t}`
+    if (t === 0) temperature = `0`
+    return temperature
+  };
 
-  xxx() {
-    console.log(this.forecastDaily)
-  }
 
 }
