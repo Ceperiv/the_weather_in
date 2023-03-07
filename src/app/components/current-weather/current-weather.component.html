@@ -8,7 +8,7 @@
 
     <form class="city_input_form">
       <mat-form-field class="form_field">
-        <mat-label>{{'cw.city' | translate}}</mat-label>
+        <mat-label>{{'cw.city'|translate}}</mat-label>
         <div class="input_city_block">
           <input type="text"
                  matInput [formControl]="chooseCity"
@@ -17,7 +17,7 @@
                  (keydown.enter)="checkCity($event)"/>
           <a (click)="checkCity($event)"><i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        <mat-hint>{{'cw.select_settlement' | translate}}</mat-hint>
+        <mat-hint>{{'cw.select_settlement'|translate}}</mat-hint>
         <mat-error *ngIf="chooseCity.hasError('minlength')">
           Please enter more than 2 characters
         </mat-error>
@@ -40,7 +40,7 @@
     <div class="w_block_2">
       <span>
         <h2 class="city_name" *ngIf="(weather$ | async) as weather"> {{weather.name}}</h2>
-        <h2 class="city_name">{{mathRound(weather.main.temp)}} &deg;C</h2>
+        <h2 class="city_name">{{mathRound(weather.main.temp)}}&deg;C</h2>
       </span>
       <ul>
         <!--        <li>{{ 'cw.temperature' | translate}} {{mathRound(weather.main.temp)}} &deg;C</li>-->

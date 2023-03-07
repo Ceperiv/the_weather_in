@@ -1,16 +1,37 @@
-.wrap_forecast{
+.wrap_forecast {
   width: 100%;
 
-  .forecast_content{
+  .forecast_content {
     width: 100%;
-    border: brown 1px solid;
+    height: 300px;
     display: flex;
-    flex-wrap: wrap;
-    .daily{
-      width: 10%;
+    //flex-wrap: wrap;
+    overflow: auto;
+    overflow-y: hidden;
+    position: relative;
+
+    .daily {
+      min-width: 15%;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding: 5px;
+
+      .w_ico {
+        position: relative;
+
+        img {
+          width: 50px;
+        }
+
+        .w_description {
+          position: absolute;
+          left: 8%;
+          bottom: 45px;
+          font-family: 'Caveat', cursive;
+          font-size: 15px;
+        }
+      }
     }
   }
 }

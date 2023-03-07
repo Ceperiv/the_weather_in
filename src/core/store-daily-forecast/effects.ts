@@ -16,7 +16,7 @@ export class DailyForecastEffects {
 
   getDailyForecast$ = createEffect(() =>
     this.actions$.pipe(ofType(getDailyForecast), mergeMap(() => {
-      return this.dailyForecastService.getDailyForecast('Lviv', 5)
+      return this.dailyForecastService.getDailyForecast('Lviv', 200)
         .pipe(map((forecast) => getDailyForecastSuccess({dailyForecast: forecast})),
           catchError(error => {
             return of(getDailyForecastFailure({error: 'ERROR ' + error.message}))
