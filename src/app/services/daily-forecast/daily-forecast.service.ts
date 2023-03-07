@@ -15,6 +15,7 @@ export class DailyForecastService {
   my1stDayIndices: Array<number> = []
   lengthArrOf1stDay: number
   forecastDaily: Array<IDailyForecastList[]> = []
+  arrIndexLength: number = 5
 
   constructor(private httpClient: HttpClient) {
   };
@@ -22,10 +23,14 @@ export class DailyForecastService {
   getDailyForecast(city: string, days: number): Observable<IDailyForecast> {
     return this.httpClient.get<IDailyForecast>(urls.dailyForecastUrl(city, days));
   };
-  getDailyForecastArr(initialForecast:IDailyForecast | null):Array<IDailyForecastList[]> {
+
+  getDailyForecastArr(initialForecast: IDailyForecast | null): Array<IDailyForecastList[]> {
+    this.forecastDaily = []
     if (initialForecast) {
-      const newDate = new Date()
-      const currentTime = newDate.getHours()
+      const newD = Math.floor(new Date().getTime() / 1000)
+      const currentDate = new Date((newD) * 1000)
+
+      const currentTime = currentDate.getHours()
       //current time :number
 
       initialForecast.list.map(
@@ -39,41 +44,49 @@ export class DailyForecastService {
         case (currentTime === 23 || currentTime < 2):
           this.my1stDayIndices = [0, 1, 2, 3, 4, 5, 6, 7];
           this.lengthArrOf1stDay = 8;
+          this.arrIndexLength = 4;
           break
         case (currentTime >= 2 && currentTime < 5):
           this.my1stDayIndices = [0, 1, 2, 3, 4, 5, 6];
           this.lengthArrOf1stDay = 7;
+          this.arrIndexLength = 5;
           break
         case (currentTime >= 5 && currentTime < 8):
           this.my1stDayIndices = [0, 1, 2, 3, 4, 5];
           this.lengthArrOf1stDay = 6;
+          this.arrIndexLength = 5;
           break
         case (currentTime >= 8 && currentTime < 11):
           this.my1stDayIndices = [0, 1, 2, 3, 4];
           this.lengthArrOf1stDay = 5;
+          this.arrIndexLength = 5;
           break
         case (currentTime >= 11 && currentTime < 14):
           this.my1stDayIndices = [0, 1, 2, 3];
           this.lengthArrOf1stDay = 4;
+          this.arrIndexLength = 5;
           break
         case (currentTime >= 14 && currentTime < 17):
           this.my1stDayIndices = [0, 1, 2];
           this.lengthArrOf1stDay = 3;
+          this.arrIndexLength = 5;
           break
         case (currentTime >= 17 && currentTime < 20):
           this.my1stDayIndices = [0, 1];
           this.lengthArrOf1stDay = 2;
+          this.arrIndexLength = 5;
           break
         case (currentTime >= 20 && currentTime < 23):
           this.my1stDayIndices = [0];
           this.lengthArrOf1stDay = 1;
+          this.arrIndexLength = 5;
           break
       }
       const bufferArr: any = []
       this.my1stDayIndices.forEach(j => Object.assign(bufferArr.push(this.forecastArr[j])));
       this.forecastDaily.push(bufferArr)
 
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < this.arrIndexLength; i++) {
         let nextDayIndices = [
           this.lengthArrOf1stDay + i * 8,
           (this.lengthArrOf1stDay + 1) + i * 8,
@@ -84,10 +97,12 @@ export class DailyForecastService {
           (this.lengthArrOf1stDay + 6) + i * 8,
           (this.lengthArrOf1stDay + 7) + i * 8,
         ]
-        const bufferArr: any = []
+        let bufferArr: any = []
         nextDayIndices.forEach(j => {
           const arr = this.forecastArr[j] || undefined
-          if(arr !== undefined) bufferArr.push(arr)
+          if (arr !== undefined) {
+            bufferArr.push(arr)
+          }
         });
         this.forecastDaily.push(bufferArr)
       }

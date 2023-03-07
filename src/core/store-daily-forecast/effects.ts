@@ -7,16 +7,23 @@ import {
   getDailyForecastFailure,
   getDailyForecastSuccess
 } from "./actions";
-import {DailyForecastService} from "../../app/services";
+import {CityLocalStorageService, CurrentWeatherService, DailyForecastService} from "../../app/services";
 
 @Injectable()
 export class DailyForecastEffects {
-  constructor(private actions$: Actions, private dailyForecastService: DailyForecastService) {
+  constructor(private actions$: Actions,
+              private dailyForecastService: DailyForecastService,
+              private currentWeatherService: CurrentWeatherService,
+              private storageService:CityLocalStorageService) {
   };
 
   getDailyForecast$ = createEffect(() =>
     this.actions$.pipe(ofType(getDailyForecast), mergeMap(() => {
-      return this.dailyForecastService.getDailyForecast('Lviv', 200)
+      const city = this.currentWeatherService.getCity()
+      const cityStorage = this.storageService.getLocalCity()
+      const lastViewedCity = cityStorage.city[cityStorage.city.length - 1]
+
+      return this.dailyForecastService.getDailyForecast(city || lastViewedCity || 'Kyiv', 200)
         .pipe(map((forecast) => getDailyForecastSuccess({dailyForecast: forecast})),
           catchError(error => {
             return of(getDailyForecastFailure({error: 'ERROR ' + error.message}))

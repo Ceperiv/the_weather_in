@@ -19,8 +19,9 @@ export class DailyForecastComponent implements OnInit {
   forecast$: Observable<IDailyForecast | null>;
   error$: Observable<string | null>;
 
-  forecastDaily: Array<IDailyForecastList[]>
-
+  forecastDaily: Array<IDailyForecastList[]>;
+  dt_txt: string;
+  classActive: boolean = false;
 
   constructor(private store: Store<AppStateInterface>,
               private service: DailyForecastService) {
@@ -31,22 +32,21 @@ export class DailyForecastComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(getDailyForecast());
-    this.store.pipe(select(getDailyForecastSelector))
-      .subscribe(value => {
-        this.forecastDaily = this.service.getDailyForecastArr(value)
-        console.log(this.forecastDaily)
-      })
-
+    if (this.forecast$ !== null) {
+      this.store.pipe(select(getDailyForecastSelector))
+        .subscribe(value => {
+          this.forecastDaily = this.service.getDailyForecastArr(value)
+          console.log(value)
+        })
+    }
   };
-
 
   getIconUrl(iconId: string): string {
     return urls.iconUrl(iconId)
   };
 
-
   getDay(utc: number, timeZone: number): any {
-    const day = (new Date((utc + timeZone) * 1000)).toString().split(' ')[0]
+    const day = (new Date((utc * 1000))).toString().split(' ')[0]
     return `day.${day}`
   };
 
@@ -64,7 +64,7 @@ export class DailyForecastComponent implements OnInit {
         minTemp = temp
       }
     });
-    return {minTemp:this.mathRound(minTemp), maxTemp:this.mathRound(maxTemp)}
+    return {minTemp: this.mathRound(minTemp), maxTemp: this.mathRound(maxTemp)}
   };
 
   mathRound(number: number): string {
@@ -76,5 +76,10 @@ export class DailyForecastComponent implements OnInit {
     return temperature
   };
 
+
+  active(dt_txt: string) {
+    this.classActive = true
+    this.dt_txt = dt_txt
+  };
 
 }

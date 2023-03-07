@@ -1,8 +1,13 @@
 <div class="wrap_forecast">
-  <h2 *ngIf="isLoading$ | async">Loading-------</h2>
+  <h2 *ngIf="isLoading$ | async">Loading..........</h2>
 
-  <div class="forecast_content" *ngIf="forecast$ | async as weatherArr">
-    <div class="daily" *ngFor="let forecast of forecastDaily">
+  <div *ngIf="forecast$ | async as weatherArr" class="forecast_content">
+
+    <div class="daily"
+         *ngFor="let forecast of forecastDaily"
+         [ngClass]="{'active': dt_txt === forecast[0].dt_txt}"
+         (click)="active(forecast[0].dt_txt)"
+    >
 
       <h2>{{(getDay(forecast[0].dt, weatherArr.city.timezone) | translate)}}</h2>
       <p>{{forecast[0].dt_txt.toString().split(' ')[0]}}</p>
@@ -14,8 +19,8 @@
       </span>
       </span>
 
-      <h4>max: {{getMinTemp(forecast).minTemp}}&deg;C</h4>
-      <h4>min: {{getMinTemp(forecast).maxTemp}}&deg;C</h4>
+      <p>max: {{getMinTemp(forecast).minTemp}}&deg;C</p>
+      <p>min: {{getMinTemp(forecast).maxTemp}}&deg;C</p>
 
     </div>
   </div>

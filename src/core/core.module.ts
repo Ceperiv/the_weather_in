@@ -13,6 +13,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @NgModule({
 
@@ -25,6 +26,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    RouterLink,
+    RouterLinkActive,
   ],
   providers: [CurrentWeatherService, DailyForecastService],
   declarations: [CurrentWeatherComponent, DailyForecastComponent],

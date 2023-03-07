@@ -14,6 +14,7 @@ import {AppStateInterface} from "../../../core/app-state";
 import {FormControl, FormGroupDirective, NgForm, Validators} from "@angular/forms";
 import {urls} from "../../configs";
 import {CityLocalStorageService, CurrentWeatherService} from "../../services";
+import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
 
 @Component({
   selector: 'app-current-weather',
@@ -84,6 +85,7 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
      if (!this.chooseCity.invalid) {
       this.currentWeatherService.setCity(this.chooseCity.value)
       this.store.dispatch(getCurrentWeather());
+      this.store.dispatch(getDailyForecast());
       console.log(err)
       if (err === null) {
         this.storageService.setLocalInfo(this.chooseCity.value)

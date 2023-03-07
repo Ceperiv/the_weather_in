@@ -7,6 +7,7 @@ import {select, Store} from "@ngrx/store";
 import {AppStateInterface} from "../../../core/app-state";
 import {cityStorageSelector} from "../../../core/store-current-weather/selectors";
 import {getCurrentWeather} from "../../../core/store-current-weather/actions";
+import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
 
 @Component({
   selector: 'app-header',
@@ -38,5 +39,6 @@ export class HeaderComponent implements OnInit {
   setCity(e: string): void {
     this.currentWeatherService.setCity(e)
     this.store.dispatch(getCurrentWeather());
+    this.store.dispatch(getDailyForecast());
   }
 }
