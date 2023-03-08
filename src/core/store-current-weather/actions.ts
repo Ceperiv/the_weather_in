@@ -11,6 +11,6 @@ export const getCurrentWeatherSuccess = createAction('[CurrentWeather] Get curre
   }>());
 
 export const getCurrentWeatherFailure = createAction('[CurrentWeather] Get current weather failure',
-  props<{ error: string }>());
+  props<{ error: { cod: number, message: string } }>());
 
 

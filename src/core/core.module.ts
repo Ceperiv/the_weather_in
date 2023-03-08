@@ -15,6 +15,7 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
 
@@ -30,6 +31,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         RouterLink,
         RouterLinkActive,
         MatProgressSpinnerModule,
+        MatProgressBarModule,
     ],
   providers: [CurrentWeatherService, DailyForecastService],
   declarations: [CurrentWeatherComponent, DailyForecastComponent, ChosenForecastComponent],

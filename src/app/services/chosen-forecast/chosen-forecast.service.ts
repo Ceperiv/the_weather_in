@@ -15,7 +15,7 @@ export class ChosenForecastService {
           resolve(true)
           clearInterval(interval)
         }
-      }, 500)
+      }, 300)
     })
     return promise
   }

@@ -47,7 +47,7 @@ export class DailyForecastComponent implements OnInit {
     return urls.iconUrl(iconId);
   };
 
-  getDay(utc: number, timeZone: number): any {
+  getDay(utc: number): any {
     const day = (new Date((utc * 1000))).toString().split(' ')[0]
     return `day.${day}`;
   };
@@ -65,7 +65,7 @@ export class DailyForecastComponent implements OnInit {
         minTemp = temp;
       }
     });
-    return {minTemp: this.mathRound(minTemp), maxTemp: this.mathRound(maxTemp)}
+    return {minTemp: this.mathRound(minTemp), maxTemp: this.mathRound(maxTemp)};
   };
 
   mathRound(number: number): string {
@@ -82,15 +82,14 @@ export class DailyForecastComponent implements OnInit {
     this.chosenForecast = chosenForecast;
     this.classActive = true;
     this.forecastService.isScroll().then(value => {
-      console.log(value)
       if (value) {
         const chosenWeatherEl = document.querySelector('app-chosen-forecast')
         chosenWeatherEl!.scrollIntoView({
           block: "center",
           inline: "nearest",
-          behavior: "smooth"
-        })
+          behavior: "smooth",
+        });
       }
-    })
+    });
   };
 }

@@ -1,10 +1,23 @@
+
 .wrap_current_weather {
   width: 100%;
+  min-height: 370px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   position: relative;
   padding: 20px;
+
+  ._loading {
+    width: 20%;
+    position: absolute;
+    left:5%;
+    top:40%;
+
+    ::ng-deep .mdc-circular-progress__indeterminate-circle-graphic {
+      stroke: coral;
+    }
+  }
 
   .main_title {
     min-width: 30%;
@@ -144,7 +157,8 @@
 
     .w_block_4 {
       width: 23%;
-      .country{
+
+      .country {
         font-size: 30px;
         font-weight: bolder;
         letter-spacing: .5rem;

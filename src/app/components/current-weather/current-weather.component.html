@@ -1,8 +1,4 @@
 <div class="wrap_current_weather">
-  <div clas *ngIf="(isLoading$ | async)">
-    <mat-spinner></mat-spinner>
-  </div>
-
   <div class="city_input_container">
     <div class="main_title">
       <h2> the weather in </h2>
@@ -28,6 +24,10 @@
         </mat-error>
       </mat-form-field>
     </form>
+  </div>
+
+  <div class="_loading" *ngIf="(isLoading$ | async)">
+    <mat-spinner></mat-spinner>
   </div>
 
   <div *ngIf="(weather$ | async) as weather" class="weather_content">
@@ -88,6 +88,9 @@
     </div>
   </div>
 
-  <div *ngIf="(error$ | async) as err">{{err}}</div>
+  <div *ngIf="(error$ | async) as err" >
+    <p>Status: {{err.cod}}</p>
+    <p>{{err.message}}</p>
+  </div>
 </div>
 

@@ -24,7 +24,7 @@ import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
 export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
   isLoading$: Observable<boolean>;
   weather$: Observable<ICurrentWeather | null>;
-  error$: Observable<string | null>;
+  error$: Observable<{ cod: number, message: string }  | null>;
 
   math = Math
   matcher = new ErrorStateMatcher()

@@ -1,6 +1,11 @@
 .wrap_forecast {
   width: 100%;
 
+  ._loading{
+    ::ng-deep .mdc-linear-progress__bar-inner{
+     border-color: coral;
+    }
+  }
 
   .forecast_content {
     width: 100%;
@@ -19,6 +24,7 @@
         color: darkgoldenrod;
       }
     }
+
     .daily {
       min-width: 15%;
       display: flex;
@@ -62,6 +68,6 @@
   }
 }
 
-app-chosen-forecast{
+app-chosen-forecast {
   width: 100%;
 }

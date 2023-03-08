@@ -1,5 +1,5 @@
 <div class="wrap_forecast">
-  <h2 *ngIf="isLoading$ | async">Loading..........</h2>
+  <mat-progress-bar class="_loading" *ngIf="isLoading$ | async" mode="indeterminate" value="40"></mat-progress-bar>
 
   <div *ngIf="forecast$ | async as weatherArr" class="forecast_content">
 
@@ -9,7 +9,7 @@
          (click)="active(forecast[0].dt_txt, forecast)"
     >
 
-      <h2>{{(getDay(forecast[0].dt, weatherArr.city.timezone) | translate)}}</h2>
+      <h2>{{(getDay(forecast[0].dt) | translate)}}</h2>
       <p>{{forecast[0].dt_txt.toString().split(' ')[0]}}</p>
 
       <div class="w_ico">
