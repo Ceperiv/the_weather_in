@@ -6,18 +6,21 @@
     <div class="daily"
          *ngFor="let forecast of forecastDaily"
          [ngClass]="{'active': dt_txt === forecast[0].dt_txt}"
-         (click)="active(forecast[0].dt_txt)"
+         (click)="active(forecast[0].dt_txt, forecast)"
     >
 
       <h2>{{(getDay(forecast[0].dt, weatherArr.city.timezone) | translate)}}</h2>
       <p>{{forecast[0].dt_txt.toString().split(' ')[0]}}</p>
 
-      <span class="w_ico">
-      <img src="{{getIconUrl(forecast[4] ? forecast[5].weather[0].icon : forecast[0].weather[0].icon)}}"
-           alt="{{forecast[0].weather[0].description}}">
-      <span class="w_description">{{forecast[0].weather[0].description}}
-      </span>
-      </span>
+      <div class="w_ico">
+        <img src="{{getIconUrl(forecast[4]
+                               ? forecast[4].weather[0].icon
+                               : forecast[1].weather[0].icon
+                               || forecast[0].weather[0].icon)}}"
+             alt="{{forecast[0].weather[0].description}}">
+        <div class="w_description">{{forecast[0].weather[0].description}}
+        </div>
+      </div>
 
       <p>max: {{getMinTemp(forecast).minTemp}}&deg;C</p>
       <p>min: {{getMinTemp(forecast).maxTemp}}&deg;C</p>
@@ -26,3 +29,5 @@
   </div>
   <div *ngIf="(error$ | async) as error"> {{error | json}}</div>
 </div>
+
+<app-chosen-forecast *ngIf="classActive" [chosenForecast]="chosenForecast" ></app-chosen-forecast>

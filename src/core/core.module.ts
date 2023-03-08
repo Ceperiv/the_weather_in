@@ -8,29 +8,31 @@ import {dailyForecastReducers} from "./store-daily-forecast/reducers";
 import {CurrentWeatherService, DailyForecastService} from "../app/services";
 import {CurrentWeatherEffects} from "./store-current-weather/effects";
 import {DailyForecastEffects} from "./store-daily-forecast/effects";
-import {CurrentWeatherComponent, DailyForecastComponent} from "../app/components";
+import {ChosenForecastComponent, CurrentWeatherComponent, DailyForecastComponent} from "../app/components";
 import {TranslateModule} from "@ngx-translate/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterLink, RouterLinkActive} from "@angular/router";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
 
-  imports: [
-    CommonModule,
-    StoreModule.forFeature('current_weather_reducer', currentWeatherReducers),
-    StoreModule.forFeature('daily_forecast_reducer', dailyForecastReducers),
-    EffectsModule.forFeature([DailyForecastEffects, CurrentWeatherEffects]),
-    TranslateModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    RouterLink,
-    RouterLinkActive,
-  ],
+    imports: [
+        CommonModule,
+        StoreModule.forFeature('current_weather_reducer', currentWeatherReducers),
+        StoreModule.forFeature('daily_forecast_reducer', dailyForecastReducers),
+        EffectsModule.forFeature([DailyForecastEffects, CurrentWeatherEffects, ChosenForecastComponent]),
+        TranslateModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        RouterLink,
+        RouterLinkActive,
+        MatProgressSpinnerModule,
+    ],
   providers: [CurrentWeatherService, DailyForecastService],
-  declarations: [CurrentWeatherComponent, DailyForecastComponent],
+  declarations: [CurrentWeatherComponent, DailyForecastComponent, ChosenForecastComponent],
   exports: [CurrentWeatherComponent, DailyForecastComponent],
 })
 export class CoreModule {

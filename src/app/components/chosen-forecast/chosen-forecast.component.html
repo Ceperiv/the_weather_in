@@ -1,1 +1,39 @@
-<p>chosen-forecast works!</p>
+<div class="wrap_chosen_forecast">
+
+  <div class="chosen_forecast_container" *ngFor="let forecast of chosenForecast">
+    <p style="color: sandybrown">
+      {{forecast.dt_txt.toString().split(' ')[1]
+      .split(':')[0]}}:{{forecast.dt_txt.toString()
+      .split(' ')[1].split(':')[1]}}
+    </p>
+    <p style="color: palegreen;  margin-bottom: 15px">{{mathRound(forecast.main.temp)}}&deg;C</p>
+
+    <div class="w_ico">
+      <img src="{{getIconUrl(forecast.weather[0].icon)}}"
+           alt="{{forecast.weather[0].description}}">
+      <div class="w_description">{{forecast.weather[0].description}}
+      </div>
+    </div>
+
+    <div class="general_info"><p>{{ 'cw.feels_like'|translate}} <span
+      class="_color">{{mathRound(forecast.main.feels_like)}}&deg;C</span></p>
+      <p>{{ 'cw.humidity'|translate}} <span class="_color">{{forecast.main.humidity}}%</span></p>
+      <p>{{ 'cw.cloudiness'|translate}} <span class="_color">{{forecast.clouds.all}}%</span></p>
+      <p>{{ 'cw.pressure'|translate}} <span class="_color">{{forecast.main.pressure}}hPa</span></p>
+      <p>{{ 'cw.visibility'|translate}} <span class="_color">{{forecast.visibility / 1000}}km</span></p>
+      <p>{{ 'cw.wind'|translate}}:</p>
+    </div>
+
+    <div class="wind_info" style="">
+      <span>{{math.round(forecast.wind.speed * 10) / 10}}km/h</span>
+
+      <span>{{getWindSpeed(forecast.wind.speed)}}m/s</span>
+    </div>
+
+    <div class="wind_direction">
+      <!--      <p>{{'cw.wind_direction'|translate}}</p>-->
+      <div class="direction"> {{getCardinalDirection(forecast.wind.deg)}}</div>
+    </div>
+
+  </div>
+</div>

@@ -1,5 +1,7 @@
 <div class="wrap_current_weather">
-  <div *ngIf="(isLoading$ | async)">Loading.......</div>
+  <div clas *ngIf="(isLoading$ | async)">
+    <mat-spinner></mat-spinner>
+  </div>
 
   <div class="city_input_container">
     <div class="main_title">
@@ -47,7 +49,7 @@
         <li>{{ 'cw.feels_like'|translate}}  {{mathRound(weather.main.feels_like)}}&deg;C</li>
         <li>{{ 'cw.humidity'|translate}} {{weather.main.humidity}}%</li>
         <li>{{ 'cw.cloudiness'|translate}} {{weather.clouds.all}}%</li>
-        <li>{{ 'cw.pressure'|translate}} {{weather.main.pressure}}hPa</li>
+        <li>{{ 'cw.atmospheric_pressure'|translate}} {{weather.main.pressure}}hPa</li>
         <li>{{ 'cw.visibility'|translate}} {{weather.visibility / 1000}}km</li>
       </ul>
     </div>
