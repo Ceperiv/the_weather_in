@@ -32,10 +32,10 @@
 
   <div *ngIf="(weather$ | async) as weather" class="weather_content">
 
-    <div class="w_block_1" *ngFor="let weatherInfo of weather.weather">
+    <div class="w_block_1">
       <span class="w_ico">
-        <img src="{{getIconUrl(weatherInfo.icon)}}" alt="{{weatherInfo.description}}">
-        <span class="w_description">{{weatherInfo.description}}</span>
+        <img src="{{getIconUrl(weather.weather[0].icon)}}" alt="{{weather.weather[0].description}}">
+        <span class="w_description">{{weather.weather[0].description}}</span>
       </span>
     </div>
 
