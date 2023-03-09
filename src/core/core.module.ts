@@ -20,8 +20,12 @@ import {
   CurrentWeatherComponent,
   DailyForecastComponent,
   HeaderComponent,
+  Error404Component,
 } from "../app/components";
 import {MatSelectModule} from "@angular/material/select";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+
 
 @NgModule({
 
@@ -39,6 +43,10 @@ import {MatSelectModule} from "@angular/material/select";
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+
+
   ],
   providers: [
     CurrentWeatherService,
@@ -47,8 +55,10 @@ import {MatSelectModule} from "@angular/material/select";
     CurrentWeatherComponent,
     DailyForecastComponent,
     ChosenForecastComponent,
-    HeaderComponent],
-  exports: [CurrentWeatherComponent, DailyForecastComponent, HeaderComponent],
+    HeaderComponent,
+    Error404Component
+  ],
+  exports: [CurrentWeatherComponent, DailyForecastComponent, HeaderComponent, Error404Component],
 })
 export class CoreModule {
 }

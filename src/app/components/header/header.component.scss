@@ -6,16 +6,21 @@
   z-index: 12;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
 
-  .select_lang {
-    width: 200px;
-    max-height: 70px;
+  .wrap_select_lang {
+    width: 40%;
+    display: flex;
+    align-items: flex-start;
+
+    .select_lang {
+      width: 200px;
+      max-height: 70px;
+      margin-top: 8px;
+    }
   }
 
   ::ng-deep .mat-mdc-text-field-wrapper {
     background: transparent;
-
   }
 
   ._title {
@@ -23,6 +28,7 @@
 
     h1 {
       padding-top: 8px;
+      padding-right: 20px;
       text-align: right;
       font-family: 'Dancing Script', cursive;
       font-size: 20px;
@@ -32,6 +38,7 @@
   }
 
   .preSelected {
+    width: 25%;
     display: flex;
     z-index: 99;
 
@@ -55,16 +62,13 @@
 
     }
   }
-
-
 }
 
 ::ng-deep .mdc-menu-surface {
   background: darkslategrey;
-  color: brown;
 }
 
-::ng-deep .mdc-list-item__primary-text{
+::ng-deep .mdc-list-item__primary-text {
   color: burlywood;
 }
 

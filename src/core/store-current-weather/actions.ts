@@ -13,4 +13,6 @@ export const getCurrentWeatherSuccess = createAction('[CurrentWeather] Get curre
 export const getCurrentWeatherFailure = createAction('[CurrentWeather] Get current weather failure',
   props<{ error: IError }>());
 
+export const changeErrStatus = createAction('[CurrentWeather] Error null')
+
 

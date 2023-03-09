@@ -2,10 +2,29 @@
   width: 100%;
   position: relative;
 
+  ._error {
+    width: 300px;
+    min-height:15px;
+    position: absolute;
+    left: calc(50vw - 150px);
+    top:15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    background: gray;
+    opacity: .4;
+    padding: 5px 15px;
+    border-radius: 10px;
+    p{
+      margin-bottom: 0;
+    }
 
-  ._loading{
-    ::ng-deep .mdc-linear-progress__bar-inner{
-     border-color: coral;
+  }
+
+  ._loading {
+    ::ng-deep .mdc-linear-progress__bar-inner {
+      border-color: coral;
     }
   }
 
@@ -20,7 +39,7 @@
     padding-left: 10px;
 
     .active {
-      box-shadow: rgba(50, 50, 93, 0.35) 0px 50px 100px -20px, rgba(0, 0, 0, 0.4) 0px 30px 60px -30px, rgba(10, 37, 64, 0.45) 0px -2px 6px 0px inset;
+      box-shadow: rgba(50, 50, 93, 0.35) 0 50px 100px -20px, rgba(0, 0, 0, 0.4) 0px 30px 60px -30px, rgba(10, 37, 64, 0.45) 0px -2px 6px 0px inset;
 
       h2 {
         color: darkgoldenrod;
@@ -61,23 +80,12 @@
     .daily:hover {
       cursor: pointer;
       transition: .3s;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      box-shadow: rgba(50, 50, 93, 0.25) 0 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     }
 
     .daily:active {
 
     }
-  }
-  ._error{
-    width: 20%;
-    min-height: 50px;
-    background: coral;
-    opacity: .8;
-    position: absolute;
-    padding: 5px;
-    left: 40%;
-    top: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   }
 }
 

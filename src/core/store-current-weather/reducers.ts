@@ -1,7 +1,8 @@
 import {createReducer, on} from "@ngrx/store";
 
 import {IStateCurrentWeather} from "../app-state";
-import {getCurrentWeather, getCurrentWeatherFailure, getCurrentWeatherSuccess} from "./actions";
+import {changeErrStatus, getCurrentWeather, getCurrentWeatherFailure, getCurrentWeatherSuccess} from "./actions";
+import {state} from "@angular/animations";
 
 export const initialState: IStateCurrentWeather = {
   isLoading: false,
@@ -29,4 +30,8 @@ export const currentWeatherReducers = createReducer(
     isLoading: false,
     error: action.error,
   })),
+  on(changeErrStatus, (state) => ({
+    ...state,
+    error: null
+  }))
 )

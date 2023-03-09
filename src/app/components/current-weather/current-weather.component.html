@@ -9,8 +9,8 @@
         <mat-label>{{'cw.city'|translate}}</mat-label>
         <div class="input_city_block">
           <input type="text"
-                 matInput [formControl]="chooseCity"
                  placeholder="Kyiv"
+                 matInput [formControl]="chooseCity"
                  [errorStateMatcher]="matcher"
                  (keydown.enter)="checkCity($event)"/>
           <a (click)="checkCity($event)"><i class="fa-solid fa-arrow-right"></i></a>
@@ -57,7 +57,7 @@
     <div class="w_block_3">
       <ul>
         <li style="display: flex">{{'cw.wind_speed'|translate}}
-          <div style="display: flex; flex-direction: column; padding-left:5px " >
+          <div style="display: flex; flex-direction: column; padding-left:5px ">
             <span>{{math.round(weather.wind.speed * 10) / 10}}km/h</span>
 
             <span>{{getWindSpeed(weather.wind.speed)}}m/s</span>
@@ -83,16 +83,17 @@
           <img src="./assets/current-weather/sunset.jpg" alt="sunset">
           {{'cw.sunset'|translate}} {{getDate(weather.sys.sunset, weather.timezone)}}
         </li>
-        <li *ngIf="weather.wind.dust"> {{'cw.gusts_of_wind'|translate}} {{weather.wind.dust}} km/h</li>
+        <li *ngIf="weather.wind.dust"> {{'cw.gusts_of_wind'|translate}} {{weather.wind.dust}}km/h</li>
       </ul>
     </div>
   </div>
-
-  <div *ngIf="(error$ | async) as err" >
+  <div class="_error" *ngIf="(error$ | async) as err">
     <p>Status: {{err.cod}}</p>
     <p>{{err.message}}</p>
-    <button (click)="errr()">xxx</button>
-    <button (click)="nav()">xxx</button>
+      <button (click)="closeErr()"  mat-fab extended color="coral">
+        <mat-icon>highlight_off</mat-icon>
+        {{'sys.close'|translate}}
+      </button>
   </div>
 </div>
 

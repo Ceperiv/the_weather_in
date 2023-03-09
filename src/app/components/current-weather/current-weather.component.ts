@@ -1,10 +1,10 @@
 import {Component, ErrorHandler, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {delay, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {ErrorStateMatcher} from '@angular/material/core';
 
 import {ICurrentWeather, IError} from "../../intefaces";
-import {getCurrentWeather} from "../../../core/store-current-weather/actions";
+import {changeErrStatus, getCurrentWeather} from "../../../core/store-current-weather/actions";
 import {
   errorSelector,
   getCurrentWeatherSelector,
@@ -15,7 +15,8 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from "@angular/form
 import {urls} from "../../configs";
 import {CityLocalStorageService, CurrentWeatherService} from "../../services";
 import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
-import {Router} from "@angular/router";
+
+
 
 @Component({
   selector: 'app-current-weather',
@@ -31,7 +32,6 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
   matcher = new ErrorStateMatcher();
 
   constructor(private store: Store<AppStateInterface>,
-              private router: Router,
               private currentWeatherService: CurrentWeatherService,
               private storageService: CityLocalStorageService) {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
@@ -41,7 +41,20 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
 
   ngOnInit(): void {
     this.store.dispatch(getCurrentWeather());
+    this.error$.subscribe(value => {
+      if (value !== null) {
+        document.addEventListener('click', this.clickOn)
+      }
+    })
   };
+
+  clickOn = (e:Event):void => {
+   let target = e.target as HTMLElement
+   let errBlock = target.closest('.wrap_current_weather > ._error')
+    if (!errBlock){
+      this.closeErr()
+    }
+  }
 
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
@@ -92,14 +105,8 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
     e.preventDefault()
   };
 
-  errr(): void {
-    // console.log(new ErrorHandler().handleError({status: 404, message: 'err'}))
 
-    new ErrorHandler().handleError({status: 404, message: 'err'})
-
-  }
-
-  nav(): void {
-    this.router.navigate(['error'])
+  closeErr(): void {
+    this.store.dispatch(changeErrStatus())
   }
 }

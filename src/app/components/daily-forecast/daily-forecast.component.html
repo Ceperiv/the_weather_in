@@ -1,17 +1,19 @@
 <div class="wrap_forecast">
+
   <mat-progress-bar class="_loading" *ngIf="isLoading$ | async" mode="indeterminate" value="40"></mat-progress-bar>
 
-  <div *ngIf="forecast$ | async as weatherArr" class="forecast_content">
+  <div class="_error" *ngIf="(error$ | async) as error">
+    <p>Status: {{error.cod}} {{error.message}}</p>
+  </div>
 
+  <div *ngIf="forecast$ | async" class="forecast_content">
     <div class="daily"
          *ngFor="let forecast of forecastDaily"
          [ngClass]="{'active': dt_txt === forecast[0].dt_txt}"
          (click)="active(forecast[0].dt_txt, forecast)"
     >
-
       <h2>{{(getDay(forecast[0].dt) | translate)}}</h2>
       <p>{{forecast[0].dt_txt.toString().split(' ')[0]}}</p>
-
       <div class="w_ico">
         <img src="{{getIconUrl(forecast[4]
                                ? forecast[4].weather[0].icon
@@ -21,16 +23,10 @@
         <div class="w_description">{{forecast[0].weather[0].description}}
         </div>
       </div>
-
       <p>max: {{getMinTemp(forecast).minTemp}}&deg;C</p>
       <p>min: {{getMinTemp(forecast).maxTemp}}&deg;C</p>
-
     </div>
   </div>
-<!--  <div class="_error" *ngIf="(error$ | async) as error">-->
-<!--    <p>Status: {{error.cod}}</p>-->
-<!--    <p>{{error.message}}</p>-->
-<!--  </div>-->
 </div>
 
-<app-chosen-forecast *ngIf="classActive" [chosenForecast]="chosenForecast" ></app-chosen-forecast>
+<app-chosen-forecast *ngIf="classActive" [chosenForecast]="chosenForecast"></app-chosen-forecast>

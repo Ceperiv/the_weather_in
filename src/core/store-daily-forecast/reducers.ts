@@ -19,6 +19,7 @@ export const dailyForecastReducers = createReducer(
     ...state,
     isLoading: false,
     myForecast: action.dailyForecast,
+    error: null
   })),
   on(getDailyForecastFailure, (state, action) => ({
     ...state,

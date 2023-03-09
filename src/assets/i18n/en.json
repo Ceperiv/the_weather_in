@@ -30,5 +30,8 @@
     "Thu": "Thursday",
     "Fri": "Friday",
     "Sat": "Saturday"
+  },
+  "sys": {
+    "close": "Close"
   }
 }
