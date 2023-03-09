@@ -26,7 +26,7 @@ export class CurrentWeatherEffects {
             getCurrentWeatherSuccess({currentWeather: weather, city_storage:cityStorage})
           ),
           catchError(error => {
-            console.log(error)
+            this.storageService.removeLast()
             return of(getCurrentWeatherFailure({error: error.error}))
           })
         );

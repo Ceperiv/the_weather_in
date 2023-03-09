@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ErrorHandler, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {Observable} from "rxjs";
+import {delay, Observable} from "rxjs";
 import {ErrorStateMatcher} from '@angular/material/core';
 
-import {ICurrentWeather} from "../../intefaces";
+import {ICurrentWeather, IError} from "../../intefaces";
 import {getCurrentWeather} from "../../../core/store-current-weather/actions";
 import {
   errorSelector,
@@ -15,6 +15,7 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from "@angular/form
 import {urls} from "../../configs";
 import {CityLocalStorageService, CurrentWeatherService} from "../../services";
 import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-current-weather',
@@ -24,12 +25,13 @@ import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
 export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
   isLoading$: Observable<boolean>;
   weather$: Observable<ICurrentWeather | null>;
-  error$: Observable<{ cod: number, message: string }  | null>;
+  error$: Observable<IError | null>;
 
-  math = Math
-  matcher = new ErrorStateMatcher()
+  math = Math;
+  matcher = new ErrorStateMatcher();
 
   constructor(private store: Store<AppStateInterface>,
+              private router: Router,
               private currentWeatherService: CurrentWeatherService,
               private storageService: CityLocalStorageService) {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
@@ -79,18 +81,25 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
     return locateString.split(' ')[1];
   }
 
-  async checkCity(e: any) {
-    let err = null
-     await this.error$.subscribe(value => err = value)
-     if (!this.chooseCity.invalid) {
+  checkCity(e: any) {
+    if (!this.chooseCity.invalid) {
+      const city = this.chooseCity.value
       this.currentWeatherService.setCity(this.chooseCity.value)
       this.store.dispatch(getCurrentWeather());
       this.store.dispatch(getDailyForecast());
-      console.log(err)
-      if (err === null) {
-        this.storageService.setLocalInfo(this.chooseCity.value)
-      }
+      this.storageService.setLocalInfo(city)
     }
     e.preventDefault()
   };
+
+  errr(): void {
+    // console.log(new ErrorHandler().handleError({status: 404, message: 'err'}))
+
+    new ErrorHandler().handleError({status: 404, message: 'err'})
+
+  }
+
+  nav(): void {
+    this.router.navigate(['error'])
+  }
 }

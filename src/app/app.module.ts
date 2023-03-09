@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
@@ -16,7 +16,8 @@ import {AppComponent} from './app.component';
 import {MainLayoutComponent} from './layouts';
 import {CoreModule} from "../core/core.module";
 import {environment} from "../environments/environment.dev";
-import {HeaderComponent} from './components';
+import {HandlerErrorsComponent} from "./components";
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -27,7 +28,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    HeaderComponent,
+    HandlerErrorsComponent
+
 
   ],
   imports: [
@@ -55,7 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       defaultLanguage: 'en',
     }),
   ],
-  providers: [],
+  providers: [ {provide: ErrorHandler, useClass: HandlerErrorsComponent}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

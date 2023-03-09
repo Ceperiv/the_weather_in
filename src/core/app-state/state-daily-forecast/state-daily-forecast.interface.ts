@@ -1,7 +1,7 @@
-import {IDailyForecast} from "../../../app/intefaces";
+import {IDailyForecast, IError} from "../../../app/intefaces";
 
 export interface IStateDailyForecast {
   isLoading: boolean,
   myForecast: IDailyForecast | null,
-  error: string | null
+  error: IError | null
 }

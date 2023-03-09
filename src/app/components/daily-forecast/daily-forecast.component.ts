@@ -3,7 +3,7 @@ import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 
 import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
-import {IDailyForecast, IDailyForecastList} from "../../intefaces";
+import {IDailyForecast, IDailyForecastList, IError} from "../../intefaces";
 import {errorSelector, getDailyForecastSelector, isLoadingSelector} from "../../../core/store-daily-forecast/selectors";
 import {AppStateInterface} from "../../../core/app-state";
 import {ChosenForecastService, DailyForecastService} from "../../services";
@@ -17,7 +17,7 @@ import {urls} from "../../configs";
 export class DailyForecastComponent implements OnInit {
   isLoading$: Observable<boolean>;
   forecast$: Observable<IDailyForecast | null>;
-  error$: Observable<string | null>;
+  error$: Observable<IError | null>;
 
   forecastDaily: Array<IDailyForecastList[]>;
   dt_txt: string;
@@ -38,7 +38,7 @@ export class DailyForecastComponent implements OnInit {
       this.store.pipe(select(getDailyForecastSelector))
         .subscribe(value => {
           this.forecastDaily = this.service.getDailyForecastArr(value);
-          console.log(value);
+          // console.log(value);
         })
     }
   };

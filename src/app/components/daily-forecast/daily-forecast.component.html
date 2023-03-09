@@ -15,8 +15,8 @@
       <div class="w_ico">
         <img src="{{getIconUrl(forecast[4]
                                ? forecast[4].weather[0].icon
-                               : forecast[1].weather[0].icon
-                               || forecast[0].weather[0].icon)}}"
+                               : (forecast[1] ? forecast[1].weather[0].icon
+                               : forecast[0].weather[0].icon))}}"
              alt="{{forecast[0].weather[0].description}}">
         <div class="w_description">{{forecast[0].weather[0].description}}
         </div>
@@ -27,7 +27,10 @@
 
     </div>
   </div>
-  <div *ngIf="(error$ | async) as error"> {{error | json}}</div>
+<!--  <div class="_error" *ngIf="(error$ | async) as error">-->
+<!--    <p>Status: {{error.cod}}</p>-->
+<!--    <p>{{error.message}}</p>-->
+<!--  </div>-->
 </div>
 
 <app-chosen-forecast *ngIf="classActive" [chosenForecast]="chosenForecast" ></app-chosen-forecast>

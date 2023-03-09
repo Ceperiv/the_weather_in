@@ -26,7 +26,7 @@ export class DailyForecastEffects {
       return this.dailyForecastService.getDailyForecast(city || lastViewedCity || 'Kyiv', 200)
         .pipe(map((forecast) => getDailyForecastSuccess({dailyForecast: forecast})),
           catchError(error => {
-            return of(getDailyForecastFailure({error: 'ERROR ' + error.message}))
+            return of(getDailyForecastFailure({error: error.error}))
           })
         );
     }))
