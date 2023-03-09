@@ -38,7 +38,6 @@ export class DailyForecastComponent implements OnInit {
       this.store.pipe(select(getDailyForecastSelector))
         .subscribe(value => {
           this.forecastDaily = this.service.getDailyForecastArr(value);
-          // console.log(value);
         })
     }
   };

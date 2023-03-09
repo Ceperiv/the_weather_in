@@ -1,11 +1,12 @@
 <header class="header">
   <div class="wrap_select_lang">
     <mat-form-field appearance="fill" class="select_lang">
-      <mat-label class="mat_label">Language
+      <mat-label class="mat_label">{{'sys.lang'|translate}}
         <mat-icon>language</mat-icon>
       </mat-label>
-      <mat-select [value]="languageList[0].code">
-        <mat-option class="mat_option" *ngFor="let lang of languageList" [value]="lang.code"
+      <mat-select>
+        <mat-option class="mat_option" *ngFor="let lang of languageList"
+                    [value]="lang.code"
                     (click)=changeLang(lang.code)>
           {{lang.label}}
           <mat-icon style="color: gray">language</mat-icon>

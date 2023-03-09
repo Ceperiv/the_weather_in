@@ -35,9 +35,7 @@ export class CityLocalStorageService {
     if (localStorage.getItem("city")) {
       const cityJSON = localStorage.getItem('city') || '';
       let cityParse = JSON.parse(cityJSON || '') || {};
-      console.log(cityParse)
       cityParse.city.splice(cityParse.city.length - 1, 1);
-      console.log(cityParse)
       localStorage.setItem('city', JSON.stringify({city: cityParse.city}));
     }
   }

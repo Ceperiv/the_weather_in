@@ -3,7 +3,7 @@
   <mat-progress-bar class="_loading" *ngIf="isLoading$ | async" mode="indeterminate" value="40"></mat-progress-bar>
 
   <div class="_error" *ngIf="(error$ | async) as error">
-    <p>Status: {{error.cod}} {{error.message}}</p>
+    <p>Status: {{error.cod}} - {{error.message}}</p>
   </div>
 
   <div *ngIf="forecast$ | async" class="forecast_content">

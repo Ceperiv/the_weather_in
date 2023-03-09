@@ -32,6 +32,7 @@
     "Sat": "Saturday"
   },
   "sys": {
-    "close": "Close"
+    "close": "Close",
+    "lang": "Language"
   }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
-import {CurrentWeatherService} from "../../services";
-import {ICityLocalStorage} from "../../intefaces";
+import {CurrentWeatherService, LangLocalStorageService} from "../../services";
+import {ICityLocalStorage, ILanguageList} from "../../intefaces";
 import {Observable} from "rxjs";
 import {select, Store} from "@ngrx/store";
 import {AppStateInterface} from "../../../core/app-state";
@@ -17,23 +17,24 @@ import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
 export class HeaderComponent implements OnInit {
   preSelected$: Observable<ICityLocalStorage | ''>;
 
-  languageList = [
+  languageList: Array<ILanguageList> = [
     {code: 'en', label: 'English'},
-    {code: 'ua', label: 'Українська'}
+    {code: 'ua', label: 'Українська'},
   ];
 
   constructor(private translateService: TranslateService,
               private store: Store<AppStateInterface>,
-              private currentWeatherService: CurrentWeatherService) {
+              private currentWeatherService: CurrentWeatherService,
+              private storageService: LangLocalStorageService) {
     this.preSelected$ = this.store.pipe(select(cityStorageSelector))
   }
 
   ngOnInit(): void {
-
+    this.storageService.startLanguage()
   };
 
   changeLang(lang: string) {
-    this.translateService.use(lang)
+    this.storageService.setLanguage(lang)
   };
 
   setCity(e: string): void {

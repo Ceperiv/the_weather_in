@@ -3,21 +3,16 @@ import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-handle-errors',
-  templateUrl: './handler-errors.component.html',
-  styleUrls: ['./handler-errors.component.scss']
+  template: '<h4>{{err|json}}</h4>',
 })
 
 @Injectable()
 export class HandlerErrorsComponent implements ErrorHandler{
-  err:Observable<any>
-
-  constructor() {
-    console.log('im here')
-  }
+  err:Observable<any>;
 
   handleError(error: any): void {
     console.log(error)
     this.err = error
-  }
+  };
 
 }

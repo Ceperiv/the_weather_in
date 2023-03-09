@@ -19,9 +19,6 @@ import {environment} from "../environments/environment.dev";
 import {HandlerErrorsComponent} from "./components";
 import {Error404LayoutComponent} from "./layouts/error404-layout/error404-layout.component";
 
-
-
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -32,9 +29,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MainLayoutComponent,
     Error404LayoutComponent,
     HandlerErrorsComponent,
-
-
-
   ],
   imports: [
     BrowserAnimationsModule,
