@@ -8,7 +8,7 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0 inset;
 
   .chosen_forecast_container {
-    width: 20%;
+    width: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,9 +53,9 @@
       padding-left: 5px;
       border-left: 1px solid lightseagreen;
 
-     p{
-       width: 100%;
-     }
+      p {
+        width: 100%;
+      }
 
       ._color {
         color: silver;
@@ -72,6 +72,14 @@
 
     .wind_direction {
       color: silver;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .wrap_chosen_forecast {
+    .chosen_forecast_container {
+      width: 180px;
     }
   }
 }

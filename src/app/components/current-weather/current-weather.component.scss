@@ -179,7 +179,6 @@
             left: 44px;
             top: 44px;
             padding-top: 20px;
-            width: 200px;
             font-size: 100px;
           }
         }
@@ -222,6 +221,10 @@
   .wrap_current_weather {
     max-height: max-content;
 
+    .main_title > h2 {
+      font-size: 50px;
+    }
+
     .weather_content {
       max-height: max-content;
 
@@ -243,6 +246,10 @@
 
 @media (max-width: 767px) {
   .wrap_current_weather {
+    .main_title > h2 {
+      font-size: 40px;
+    }
+
     .weather_content {
       flex-direction: column;
       align-items: center;
@@ -285,13 +292,20 @@
 
 @media (max-width: 650px) {
   .wrap_current_weather {
-    ._title > h2{
-      margin-top: 5px;
-    }
+    padding: 2px;
+
     .city_input_container {
       width: 100%;
-      justify-content: space-between;
+      justify-content: space-evenly;
       padding: 0;
+
+      .main_title > h2 {
+        max-width: 50%;
+        margin-top: 5px;
+        text-align: center;
+        font-size: 33px;
+      }
+
 
       .city_input_form {
         width: 50%;
@@ -324,6 +338,11 @@
       .main_title {
         max-width: 100%;
         padding: 0;
+
+        h2 {
+          max-width: 100%;
+          text-align: center;
+        }
       }
 
       .city_input_form {
