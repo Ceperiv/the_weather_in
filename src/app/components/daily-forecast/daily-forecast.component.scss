@@ -97,7 +97,14 @@ app-chosen-forecast {
 
 @media (max-width: 767px) {
   .wrap_forecast {
+    white-space: nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
+
+    .forecast_content {
+      .daily {
+        min-width: 150px;
+      }
+    }
   }
 }
