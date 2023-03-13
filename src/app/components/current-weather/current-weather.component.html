@@ -31,60 +31,63 @@
   </div>
 
   <div *ngIf="(weather$ | async) as weather" class="weather_content">
-
-    <div class="w_block_1">
+    <div class="w_block_1_2">
+      <div class="w_block_1">
       <span class="w_ico">
         <img src="{{getIconUrl(weather.weather[0].icon)}}" alt="{{weather.weather[0].description}}">
         <span class="w_description">{{weather.weather[0].description}}</span>
       </span>
-    </div>
+      </div>
 
-    <div class="w_block_2">
+      <div class="w_block_2">
       <span>
         <h2 class="city_name" *ngIf="(weather$ | async) as weather"> {{weather.name}}</h2>
         <h2 class="city_name">{{mathRound(weather.main.temp)}}&deg;C</h2>
       </span>
-      <ul>
-        <!--        <li>{{ 'cw.temperature' | translate}} {{mathRound(weather.main.temp)}} &deg;C</li>-->
-        <li>{{ 'cw.feels_like'|translate}}  {{mathRound(weather.main.feels_like)}}&deg;C</li>
-        <li>{{ 'cw.humidity'|translate}} {{weather.main.humidity}}%</li>
-        <li>{{ 'cw.cloudiness'|translate}} {{weather.clouds.all}}%</li>
-        <li>{{ 'cw.atmospheric_pressure'|translate}} {{weather.main.pressure}}hPa</li>
-        <li>{{ 'cw.visibility'|translate}} {{weather.visibility / 1000}}km</li>
-      </ul>
-    </div>
-
-    <div class="w_block_3">
-      <ul>
-        <li style="display: flex">{{'cw.wind_speed'|translate}}
-          <div style="display: flex; flex-direction: column; padding-left:5px ">
-            <span>{{math.round(weather.wind.speed * 10) / 10}}km/h</span>
-
-            <span>{{getWindSpeed(weather.wind.speed)}}m/s</span>
-          </div>
-        </li>
-        <li *ngIf="weather.wind.dust"> {{'cw.gusts_of_wind'|translate}} {{weather.wind.dust}} km/h</li>
-      </ul>
-      <div class="wind_direction">
-        <p>{{'cw.wind_direction'|translate}}</p>
-        <img class="wind_direction_img" src="assets/current-weather/compass.jpg" alt="compass"/>
-        <div class="direction"> {{getCardinalDirection(weather.wind.deg)}}</div>
+        <ul>
+          <!--        <li>{{ 'cw.temperature' | translate}} {{mathRound(weather.main.temp)}} &deg;C</li>-->
+          <li>{{ 'cw.feels_like'|translate}}  {{mathRound(weather.main.feels_like)}}&deg;C</li>
+          <li>{{ 'cw.humidity'|translate}} {{weather.main.humidity}}%</li>
+          <li>{{ 'cw.cloudiness'|translate}} {{weather.clouds.all}}%</li>
+          <li>{{ 'cw.atmospheric_pressure'|translate}} {{weather.main.pressure}}hPa</li>
+          <li>{{ 'cw.visibility'|translate}} {{weather.visibility / 1000}}km</li>
+        </ul>
       </div>
     </div>
-    <div class="w_block_4">
-      <h2 class="country">{{weather.sys.country}}</h2>
-      <span class="country" style=" font-size: 20px;">{{weather.name}}</span>
-      <ul>
-        <li>
-          <img src="./assets/current-weather/sunrise.jpg" alt="sunrise">
-          {{'cw.sunrise'|translate}} {{getDate(weather.sys.sunrise, weather.timezone)}}
-        </li>
-        <li>
-          <img src="./assets/current-weather/sunset.jpg" alt="sunset">
-          {{'cw.sunset'|translate}} {{getDate(weather.sys.sunset, weather.timezone)}}
-        </li>
-        <li *ngIf="weather.wind.dust"> {{'cw.gusts_of_wind'|translate}} {{weather.wind.dust}}km/h</li>
-      </ul>
+
+    <div class="w_block_3_4">
+      <div class="w_block_3">
+        <ul>
+          <li style="display: flex">{{'cw.wind_speed'|translate}}
+            <div style="display: flex; flex-direction: column; padding-left:5px ">
+              <span>{{math.round(weather.wind.speed * 10) / 10}}km/h</span>
+
+              <span>{{getWindSpeed(weather.wind.speed)}}m/s</span>
+            </div>
+          </li>
+          <li *ngIf="weather.wind.dust"> {{'cw.gusts_of_wind'|translate}} {{weather.wind.dust}} km/h</li>
+        </ul>
+        <div class="wind_direction">
+          <p class="wind_direction_title">{{'cw.wind_direction'|translate}}</p>
+          <img class="wind_direction_img" src="assets/current-weather/compass.jpg" alt="compass"/>
+          <div class="direction"> {{getCardinalDirection(weather.wind.deg)}}</div>
+        </div>
+      </div>
+      <div class="w_block_4">
+        <h2 class="country">{{weather.sys.country}}</h2>
+        <span class="country" style=" font-size: 20px;">{{weather.name}}</span>
+        <ul>
+          <li>
+            <img src="./assets/current-weather/sunrise.jpg" alt="sunrise">
+            {{'cw.sunrise'|translate}} {{getDate(weather.sys.sunrise, weather.timezone)}}
+          </li>
+          <li>
+            <img src="./assets/current-weather/sunset.jpg" alt="sunset">
+            {{'cw.sunset'|translate}} {{getDate(weather.sys.sunset, weather.timezone)}}
+          </li>
+          <li *ngIf="weather.wind.dust"> {{'cw.gusts_of_wind'|translate}} {{weather.wind.dust}}km/h</li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="_error" *ngIf="(error$ | async) as err">
