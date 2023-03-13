@@ -90,7 +90,7 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
   }
 
   getDate(utc: number, timeZone: number): string {
-    const locateString = (new Date((utc + timeZone) * 1000)).toLocaleString()
+    const locateString = (new Date((utc) * 1000)).toLocaleString()
     return locateString.split(' ')[1];
   }
 

@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="wrap_select_lang">
+  <div class="wrap_select_lang ex_1">
     <mat-form-field appearance="fill" class="select_lang">
       <mat-label class="mat_label">{{'sys.lang'|translate}}
         <mat-icon>language</mat-icon>
@@ -7,13 +7,29 @@
       <mat-select>
         <mat-option class="mat_option" *ngFor="let lang of languageList"
                     [value]="lang.code"
-                    (click)=changeLang(lang.code)>
-          {{lang.label}}
+                    (click)=changeLang(lang.code)
+                    [disabled]="currentLang === lang.code"
+        >{{lang.label}}
           <mat-icon style="color: gray">language</mat-icon>
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
+
+  <div class="wrap_select_lang ex_2">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon style="color: gray">language</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <span *ngFor="let lang of languageList">
+        <button mat-menu-item
+                (click)=changeLang(lang.code)
+                [disabled]="currentLang === lang.code"
+        >{{lang.label}}</button>
+      </span>
+    </mat-menu>
+  </div>
+
 
   <div class="_title">
     <h1> the weather in </h1>

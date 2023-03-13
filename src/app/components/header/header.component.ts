@@ -16,6 +16,7 @@ import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
 })
 export class HeaderComponent implements OnInit {
   preSelected$: Observable<ICityLocalStorage | ''>;
+  currentLang: string
 
   languageList: Array<ILanguageList> = [
     {code: 'en', label: 'English'},
@@ -30,11 +31,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.storageService.startLanguage()
+    this.storageService.startLanguage();
+    this.currentLang = this.storageService.getLanguageCode();
   };
 
   changeLang(lang: string) {
     this.storageService.setLanguage(lang)
+    this.currentLang = lang
   };
 
   setCity(e: string): void {

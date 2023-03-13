@@ -25,15 +25,15 @@
     }
 
     .line_2 {
-      width: 10%;
+      width: 50%;
       height: 150%;
       background: cadetblue;
       position: fixed;
-      right: 0;
+      right: -40%;
       top: 0;
       box-shadow: 0 0 8px 0;
       opacity: .6;
-      transform: rotate(8deg);
+      //transform: rotate(8deg);
       z-index: -2;
     }
 

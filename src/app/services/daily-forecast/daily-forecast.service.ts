@@ -56,12 +56,12 @@ export class DailyForecastService {
           this.lengthArrOf1stDay = 6;
           this.arrIndexLength = 5;
           break
-        case (currentTime >= 8 && currentTime < 11):
+        case (currentTime >= 8 && currentTime < 12):
           this.my1stDayIndices = [0, 1, 2, 3, 4];
           this.lengthArrOf1stDay = 5;
           this.arrIndexLength = 5;
           break
-        case (currentTime >= 11 && currentTime < 14):
+        case (currentTime >= 12 && currentTime < 14):
           this.my1stDayIndices = [0, 1, 2, 3];
           this.lengthArrOf1stDay = 4;
           this.arrIndexLength = 5;

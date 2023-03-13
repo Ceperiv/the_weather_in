@@ -20,11 +20,12 @@
                                : (forecast[1] ? forecast[1].weather[0].icon
                                : forecast[0].weather[0].icon))}}"
              alt="{{forecast[0].weather[0].description}}">
-        <div class="w_description">{{forecast[0].weather[0].description}}
+        <div class="w_description">
+          {{forecast[0].weather[0].description}}
         </div>
       </div>
-      <p>max: {{getMinTemp(forecast).minTemp}}&deg;C</p>
-      <p>min: {{getMinTemp(forecast).maxTemp}}&deg;C</p>
+      <p>max: {{getMinTemp(forecast).maxTemp}}&deg;C</p>
+      <p>min: {{getMinTemp(forecast).minTemp}}&deg;C</p>
     </div>
   </div>
 </div>

@@ -16,8 +16,13 @@ export class LangLocalStorageService {
     }
   };
 
+
   setLanguage(lang: string): void {
     localStorage.setItem('lang', JSON.stringify({lang}));
     this.translateService.use(lang);
+  };
+  getLanguageCode():string{
+    const langJSON = localStorage.getItem("lang");
+    return JSON.parse(langJSON || '').lang
   }
 }

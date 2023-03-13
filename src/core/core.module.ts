@@ -25,29 +25,31 @@ import {
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 @NgModule({
 
-  imports: [
-    CommonModule,
-    StoreModule.forFeature('current_weather_reducer', currentWeatherReducers),
-    StoreModule.forFeature('daily_forecast_reducer', dailyForecastReducers),
-    EffectsModule.forFeature([DailyForecastEffects, CurrentWeatherEffects, ChosenForecastComponent]),
-    TranslateModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    RouterLink,
-    RouterLinkActive,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatIconModule,
-    MatButtonModule,
+    imports: [
+        CommonModule,
+        StoreModule.forFeature('current_weather_reducer', currentWeatherReducers),
+        StoreModule.forFeature('daily_forecast_reducer', dailyForecastReducers),
+        EffectsModule.forFeature([DailyForecastEffects, CurrentWeatherEffects, ChosenForecastComponent]),
+        TranslateModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        RouterLink,
+        RouterLinkActive,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatIconModule,
+        MatButtonModule,
+        MatMenuModule,
 
 
-  ],
+    ],
   providers: [
     CurrentWeatherService,
     DailyForecastService],

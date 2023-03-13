@@ -8,7 +8,7 @@
   align-items: center;
 
   .wrap_select_lang {
-    width:25%;
+    width: 25%;
     display: flex;
     align-items: flex-start;
 
@@ -19,9 +19,13 @@
       margin-left: 20px;
     }
   }
+  .ex_2 {
+    display: none;
+  }
 
   ::ng-deep .mat-mdc-text-field-wrapper {
     background: transparent;
+    padding: 0;
   }
 
   ._title {
@@ -41,6 +45,8 @@
   .preSelected {
     width: 40%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 99;
 
     a {
@@ -76,3 +82,65 @@
 //::ng-deep .mdc-line-ripple::before{
 //  border-bottom-style: none;
 //}
+
+@media (max-width: 992px) {
+  .header {
+    .select_lang {
+      width: 15%;
+    }
+
+    ._title {
+      width: 20%;
+    }
+
+    .preSelected {
+      width: 60%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    height: max-content;
+    flex-direction: column;
+    position: relative;
+    padding: 0;
+
+    .ex_2 {
+      display: block;
+    }
+
+    .ex_1 {
+      display: none;
+    }
+
+    .wrap_select_lang {
+      position: absolute;
+      left: 0;
+      top: 25%;
+    }
+    ._title {
+      width: 100%;
+ h1{
+   text-align: center;
+ }
+    }
+
+    .preSelected {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .header{
+    .wrap_select_lang {
+      top: 30%;
+    }
+    .preSelected{
+      flex-wrap: wrap;
+    }
+  }
+}
+
