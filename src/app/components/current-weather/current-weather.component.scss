@@ -358,6 +358,7 @@
       .w_block_3_4 {
 
         .w_block_4 {
+          width: 70%;
           margin-top: 115px;
           margin-left: 5%;
         }
@@ -365,3 +366,48 @@
     }
   }
 }
+
+@media (max-width: 350px) {
+  .wrap_current_weather {
+
+    .weather_content {
+      .w_block_1_2 {
+        display: block;
+.w_block_1{
+  padding-left: 55%;
+}
+      }
+
+      .w_block_3_4 {
+        .w_block_3 {
+          margin-bottom: 200px;
+
+          .wind_direction {
+            .wind_direction_title {
+              top: 30px;
+            }
+
+            .wind_direction_img {
+              top: 60px;
+              left: auto;
+              right: 40px;
+            }
+
+            .direction {
+              top: 103px;
+              left: auto;
+              right: 90px;
+            }
+          }
+        }
+
+        .w_block_4, .w_block_3 {
+         width: 100%;
+          margin-top: 0;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+

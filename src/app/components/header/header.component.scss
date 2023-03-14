@@ -19,6 +19,7 @@
       margin-left: 20px;
     }
   }
+
   .ex_2 {
     display: none;
   }
@@ -68,6 +69,14 @@
       letter-spacing: .3rem;
 
     }
+
+    .city_name {
+      width: initial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
   }
 }
 
@@ -85,17 +94,27 @@
 
 @media (max-width: 992px) {
   .header {
-    .select_lang {
-      width: 15%;
+    .wrap_select_lang {
+      width: 140px;
+      .select_lang {
+        width: 100%;
+        margin-left: 5px;
+      }
     }
 
     ._title {
       width: 20%;
+      h1{
+        text-align: center;
+        padding-left: 1%;
+
+      }
     }
 
     .preSelected {
-      width: 60%;
+      width: 38%;
     }
+
   }
 }
 
@@ -119,11 +138,13 @@
       left: 0;
       top: 25%;
     }
+
     ._title {
       width: 100%;
- h1{
-   text-align: center;
- }
+
+      h1 {
+        text-align: center;
+      }
     }
 
     .preSelected {
@@ -134,12 +155,13 @@
 }
 
 @media (max-width: 380px) {
-  .header{
+  .header {
     .wrap_select_lang {
       top: 8%;
       left: -5px;
     }
-    .preSelected{
+
+    .preSelected {
       flex-wrap: wrap;
     }
   }
