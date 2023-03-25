@@ -3,9 +3,12 @@ import {createReducer, on} from "@ngrx/store";
 import {IStateDailyForecast} from "../app-state";
 import {getDailyForecast, getDailyForecastFailure, getDailyForecastSuccess} from "./actions";
 
+
+
 export const initialState: IStateDailyForecast = {
   isLoading: false,
   myForecast: null,
+  myForecastList: null,
   error: null,
 };
 
@@ -19,7 +22,8 @@ export const dailyForecastReducers = createReducer(
     ...state,
     isLoading: false,
     myForecast: action.dailyForecast,
-    error: null
+    myForecastList: action.dailyForecastList,
+    error: null,
   })),
   on(getDailyForecastFailure, (state, action) => ({
     ...state,

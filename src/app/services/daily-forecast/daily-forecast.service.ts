@@ -20,8 +20,8 @@ export class DailyForecastService {
   constructor(private httpClient: HttpClient) {
   };
 
-  getDailyForecast(city: string, days: number): Observable<IDailyForecast> {
-    return this.httpClient.get<IDailyForecast>(urls.dailyForecastUrl(city, days));
+  getDailyForecast(city: string): Observable<IDailyForecast> {
+    return this.httpClient.get<IDailyForecast>(urls.dailyForecastUrl(city));
   };
 
   getDailyForecastArr(initialForecast: IDailyForecast | null): Array<IDailyForecastList[]> {
@@ -32,6 +32,8 @@ export class DailyForecastService {
 
       const currentTime = currentDate.getHours()
       //current time :number
+
+      this.forecastArr = [];
 
       initialForecast.list.map(
         (value, index) => {
@@ -107,6 +109,7 @@ export class DailyForecastService {
         this.forecastDaily.push(bufferArr)
       }
     }
+    console.log(this.forecastDaily, 'Forecast daily')
     return this.forecastDaily
   };
 }

@@ -8,7 +8,7 @@
 
   <div *ngIf="forecast$ | async" class="forecast_content">
     <div class="daily"
-         *ngFor="let forecast of forecastDaily"
+         *ngFor="let forecast of forecastDaily$ | async"
          [ngClass]="{'active': dt_txt === forecast[0].dt_txt}"
          (click)="active(forecast[0].dt_txt, forecast)"
     >

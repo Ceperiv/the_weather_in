@@ -4,14 +4,12 @@ import {catchError, map, mergeMap, of} from "rxjs";
 
 import {getCurrentWeather, getCurrentWeatherFailure, getCurrentWeatherSuccess} from "./actions";
 import {CityLocalStorageService, CurrentWeatherService} from "../../app/services";
-import {Store} from "@ngrx/store";
-import {AppStateInterface} from "../app-state";
 
 @Injectable()
 export class CurrentWeatherEffects {
   constructor(private actions$: Actions,
               private currentWeatherService: CurrentWeatherService,
-              private storageService:CityLocalStorageService) {
+              private storageService: CityLocalStorageService) {
   }
 
   getCurrentWeather$ = createEffect(() =>
@@ -23,7 +21,7 @@ export class CurrentWeatherEffects {
       return this.currentWeatherService.getCurrentWeather(city || lastViewedCity || 'Kyiv')
 
         .pipe(map((weather) =>
-            getCurrentWeatherSuccess({currentWeather: weather, city_storage:cityStorage})
+            getCurrentWeatherSuccess({currentWeather: weather, city_storage: cityStorage})
           ),
           catchError(error => {
             this.storageService.removeLast()

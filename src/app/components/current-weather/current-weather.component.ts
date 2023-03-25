@@ -98,8 +98,8 @@ export class CurrentWeatherComponent implements OnInit, ErrorStateMatcher {
     if (!this.chooseCity.invalid) {
       const city = this.chooseCity.value
       this.currentWeatherService.setCity(this.chooseCity.value)
-      this.store.dispatch(getCurrentWeather());
       this.store.dispatch(getDailyForecast());
+      this.store.dispatch(getCurrentWeather());
       this.storageService.setLocalInfo(city)
     }
     e.preventDefault()

@@ -12,6 +12,10 @@ export const getDailyForecastSelector = createSelector(
   selectFeature,
   (state) => state.myForecast);
 
+export const getDailyForecastListSelector = createSelector(
+  selectFeature,
+  (state) => state.myForecastList);
+
 export const errorSelector = createSelector(
   selectFeature,
   (state) => state.error);

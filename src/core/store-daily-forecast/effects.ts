@@ -14,7 +14,8 @@ export class DailyForecastEffects {
   constructor(private actions$: Actions,
               private dailyForecastService: DailyForecastService,
               private currentWeatherService: CurrentWeatherService,
-              private storageService:CityLocalStorageService) {
+              private storageService: CityLocalStorageService,
+  ) {
   };
 
   getDailyForecast$ = createEffect(() =>
@@ -23,8 +24,12 @@ export class DailyForecastEffects {
       const cityStorage = this.storageService.getLocalCity()
       const lastViewedCity = cityStorage.city[cityStorage.city.length - 1]
 
-      return this.dailyForecastService.getDailyForecast(city || lastViewedCity || 'Kyiv', 200)
-        .pipe(map((forecast) => getDailyForecastSuccess({dailyForecast: forecast})),
+      return this.dailyForecastService.getDailyForecast(city || lastViewedCity || 'Kyiv')
+        .pipe(map((forecast) => getDailyForecastSuccess(
+            {
+              dailyForecast: forecast,
+              dailyForecastList: this.dailyForecastService.getDailyForecastArr(forecast)
+            })),
           catchError(error => {
             return of(getDailyForecastFailure({error: error.error}))
           })

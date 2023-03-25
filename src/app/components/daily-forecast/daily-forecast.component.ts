@@ -4,7 +4,12 @@ import {Observable} from "rxjs";
 
 import {getDailyForecast} from "../../../core/store-daily-forecast/actions";
 import {IDailyForecast, IDailyForecastList, IError} from "../../intefaces";
-import {errorSelector, getDailyForecastSelector, isLoadingSelector} from "../../../core/store-daily-forecast/selectors";
+import {
+  errorSelector,
+  getDailyForecastListSelector,
+  getDailyForecastSelector,
+  isLoadingSelector
+} from "../../../core/store-daily-forecast/selectors";
 import {AppStateInterface} from "../../../core/app-state";
 import {ChosenForecastService, DailyForecastService} from "../../services";
 import {urls} from "../../configs";
@@ -18,28 +23,23 @@ export class DailyForecastComponent implements OnInit {
   isLoading$: Observable<boolean>;
   forecast$: Observable<IDailyForecast | null>;
   error$: Observable<IError | null>;
+  forecastDaily$: Observable<Array<IDailyForecastList[]> | null>;
 
-  forecastDaily: Array<IDailyForecastList[]>;
   dt_txt: string;
   classActive: boolean = false;
   chosenForecast: IDailyForecastList[];
 
   constructor(private store: Store<AppStateInterface>,
               private service: DailyForecastService,
-              private forecastService:ChosenForecastService) {
+              private forecastService: ChosenForecastService) {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.forecast$ = this.store.pipe(select(getDailyForecastSelector));
+    this.forecastDaily$ = this.store.pipe(select(getDailyForecastListSelector));
     this.error$ = this.store.pipe(select(errorSelector));
   };
 
   ngOnInit(): void {
     this.store.dispatch(getDailyForecast());
-    if (this.forecast$ !== null) {
-      this.store.pipe(select(getDailyForecastSelector))
-        .subscribe(value => {
-          this.forecastDaily = this.service.getDailyForecastArr(value);
-        })
-    }
   };
 
   getIconUrl(iconId: string): string {
