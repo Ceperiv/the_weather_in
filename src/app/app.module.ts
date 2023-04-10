@@ -19,7 +19,7 @@ import {environment} from "../environments/environment.dev";
 import {HandlerErrorsComponent} from "./components";
 import {Error404LayoutComponent} from "./layouts/error404-layout/error404-layout.component";
 
-export function HttpLoaderFactory(http: HttpClient) {
+export function HttpLoaderFactory(http: HttpClient):TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }
 
