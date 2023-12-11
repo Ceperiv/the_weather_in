@@ -1,4 +1,4 @@
 export interface IError {
-  cod: number,
-  message: string,
+    cod:number;
+ message:string;
 }

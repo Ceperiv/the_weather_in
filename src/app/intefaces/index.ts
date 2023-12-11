@@ -3,5 +3,6 @@ export * from './current-weather'
 export * from './daily-forecast'
 export * from './error'
 export * from './language-list'
+export * from './error'
 
 
